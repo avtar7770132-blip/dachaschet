@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Калькулятор удобрений — Дача-Счёт</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:700px;margin:0 auto}
+.calc-grid label{display:block;margin-bottom:5px;font-weight:bold}
+.calc-grid input,.calc-grid select{width:100%;padding:12px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;background:#fff;box-sizing:border-box}
+.full-width{grid-column:1/-1}
+.result-box{background:#fff;border:2px solid var(--color-accent);border-radius:12px;padding:25px;margin:25px auto;max-width:700px}
+.result-box h3{color:var(--color-accent);margin-top:0}
+.result-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px dashed var(--color-border)}
+.result-row:last-child{border-bottom:none}
+.result-row .label{color:#666}
+.result-row .value{font-weight:bold;font-size:1.2rem;color:var(--color-accent)}
+.instruction{background:#f0fdf4;border-left:4px solid var(--color-accent);padding:15px;border-radius:8px;margin-top:20px}
+@media(max-width:600px){.calc-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
+<h1>🧪 Калькулятор удобрений</h1>
+<p class="subtitle">Рассчитайте точную норму внесения под ваши посадки.</p>
+<div class="card">
+<div class="calc-grid">
+<div><label for="culture">Культура</label><select id="culture">
+<option value="vegetables">Овощи (томат, огурец, перец)</option>
+<option value="root">Корнеплоды (морковь, свёкла)</option>
+<option value="berry">Ягоды (клубника, смородина)</option>
+<option value="tree">Плодовые деревья</option>
+<option value="potato">Картофель</option></select></div>
+<div><label for="fertilizer">Удобрение</label><select id="fertilizer">
+<option value="urea">Мочевина (карбамид)</option>
+<option value="superphosphate">Суперфосфат</option>
+<option value="ash">Древесная зола</option>
+<option value="potassium">Калийная соль</option>
+<option value="manure">Перегной/навоз</option></select></div>
+<div><label for="mode">Режим расчёта</label><select id="mode">
+<option value="area">На площадь (м²)</option>
+<option value="bush">На куст/дерево (шт)</option></select></div>
+<div><label id="amountLabel" for="amountInput">Площадь, м²</label><input type="number" id="amountInput" value="10" min="1" step="0.5"></div>
+<div class="full-width"><label for="season">Сезон внесения</label><select id="season">
+<option value="spring">Весна (перед посадкой)</option>
+<option value="summer">Лето (подкормка)</option>
+<option value="autumn">Осень (под перекопку)</option></select></div>
+</div>
+<button onclick="calculateFertilizer()" class="btn-link" style="width:100%;margin-top:20px;border:none;cursor:pointer;font-size:1.1rem;padding:14px">Рассчитать норму</button>
+</div>
+<div id="resultArea"></div>
+<div class="ad-banner" style="max-width:700px;margin:30px auto">[ Реклама: Удобрения, средства защиты растений ]</div>
+<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+</div>
+<script>
+const RATES={
+urea:{name:'Мочевина (карбамид)',perM2:15,perBush:25,unit:'г',tip:'Вносить в бороздки на 5–7 см, заделать и полить.'},
+superphosphate:{name:'Суперфосфат',perM2:30,perBush:50,unit:'г',tip:'Не смешивать с мочевиной и золой в одной смеси.'},
+ash:{name:'Древесная зола',perM2:150,perBush:250,unit:'г',tip:'1 стакан ≈ 100 г. Не применять вместе с азотными.'},
+potassium:{name:'Калийная соль',perM2:20,perBush:30,unit:'г',tip:'Вносить только осенью — хлор вымоется за зиму.'},
+manure:{name:'Перегной/навоз',perM2:4,perBush:8,unit:'кг',tip:'Свежий навоз — только осенью, перепревший — весной.'}
+};
+const CULTURES={vegetables:'Овощи',root:'Корнеплоды',berry:'Ягоды',tree:'Плодовые деревья',potato:'Картофель'};
+const SEASONS={spring:'весной',summer:'летом (подкормка)',autumn:'осенью'};
+const CMULT={vegetables:1.0,root:0.8,berry:1.2,tree:1.5,potato:1.1};
+const SMULT={spring:1.0,summer:0.6,autumn:1.2};
+document.getElementById('mode').addEventListener('change',function(){
+document.getElementById('amountLabel').textContent=this.value==='area'?'Площадь, м²':'Кустов/деревьев, шт';
+});
+function calculateFertilizer(){
+const culture=document.getElementById('culture').value;
+const fert=document.getElementById('fertilizer').value;
+const mode=document.getElementById('mode').value;
+const amount=parseFloat(document.getElementById('amountInput').value);
+const season=document.getElementById('season').value;
+if(!amount||amount<=0)return alert('Введите корректное значение');
+const r=RATES[fert];
+const base=mode==='area'?r.perM2:r.perBush;
+const total=Math.round(base*amount*CMULT[culture]*SMULT[season]);
+const fmt=total>=1000?(total/1000).toFixed(1)+' кг':total+' '+r.unit;
+document.getElementById('resultArea').innerHTML='<div class="result-box fade-in"><h3>Результат расчёта</h3><div class="result-row"><span class="label">Культура</span><span class="value">'+CULTURES[culture]+'</span></div><div class="result-row"><span class="label">Удобрение</span><span class="value">'+r.name+'</span></div><div class="result-row"><span class="label">Объём</span><span class="value">'+amount+' '+(mode==='area'?'м²':'шт')+'</span></div><div class="result-row"><span class="label">Сезон</span><span class="value">'+SEASONS[season]+'</span></div><div class="result-row" style="border-top:2px solid var(--color-accent);padding-top:15px;margin-top:10px"><span class="label" style="font-size:1.1rem">Итого нужно:</span><span class="value" style="font-size:1.6rem">'+fmt+'</span></div><div class="instruction"><strong>💡 Как вносить:</strong> '+r.tip+'</div></div>';
+document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
