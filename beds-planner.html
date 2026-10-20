@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Планировщик грядок: севооборот на следующий год — Дача-Счёт</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>.cf{max-width:700px;margin:0 auto}.cf label{display:block;margin-bottom:5px;font-weight:bold}.cf select{width:100%;padding:12px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;background:#fff;margin-bottom:15px;box-sizing:border-box}.rb{background:#fff;border:2px solid var(--color-accent);border-radius:12px;padding:25px;margin:25px auto;max-width:700px}.rb h3{color:var(--color-accent);margin-top:0}.plan-row{border-bottom:1px dashed var(--color-border);padding:12px 0}.plan-row:last-child{border-bottom:none}.warn{background:#fee2e2;border-left:4px solid #ef4444;padding:12px;border-radius:8px;margin-top:15px;font-size:.95rem}.ti{background:#f0fdf4;padding:10px;border-radius:6px;margin-top:15px;font-size:.9rem;color:#14532d}</style>
+</head>
+<body>
+<div class="container">
+<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
+<h1>🗺 Планировщик грядок</h1>
+<p class="subtitle">Укажите, что росло в прошлом году — получите план посадок на следующий сезон.</p>
+<div class="card cf">
+<label for="b1">Грядка 1 — прошлый год</label><select id="b1" class="bedsel"></select>
+<label for="b2">Грядка 2 — прошлый год</label><select id="b2" class="bedsel"></select>
+<label for="b3">Грядка 3 — прошлый год</label><select id="b3" class="bedsel"></select>
+<label for="b4">Грядка 4 — прошлый год</label><select id="b4" class="bedsel"></select>
+<button onclick="makePlan()" class="btn-link" style="width:100%;border:none;cursor:pointer;font-size:1.1rem;padding:14px">Составить план</button>
+</div>
+<div id="resP"></div>
+<div class="ad-banner" style="max-width:700px;margin:30px auto">[ Реклама: Семена, сидераты, укрывной материал ]</div>
+<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+</div>
+<script>
+const FAM={tomato:'Паслёновые',potato:'Паслёновые',pepper:'Паслёновые',eggplant:'Паслёновые',cucumber:'Тыквенные',zucchini:'Тыквенные',pumpkin:'Тыквенные',cabbage:'Капустные',radish:'Капустные',onion:'Луковые',garlic:'Луковые',carrot:'Корнеплодные и зеленные',beet:'Корнеплодные и зеленные',lettuce:'Корнеплодные и зеленные'};
+const NAMES={tomato:'Томат',potato:'Картофель',pepper:'Перец',eggplant:'Баклажан',cucumber:'Огурец',zucchini:'Кабачок',pumpkin:'Тыква',cabbage:'Капуста',radish:'Редис',onion:'Лук',garlic:'Чеснок',carrot:'Морковь',beet:'Свёкла',lettuce:'Салат'};
+const CYCLE=['Паслёновые','Тыквенные','Луковые','Капустные','Корнеплодные и зеленные'];
+const MEMBERS={'Паслёновые':'томат, перец, баклажан','Тыквенные':'огурец, кабачок, тыква','Луковые':'лук, чеснок','Капустные':'капуста, редис','Корнеплодные и зеленные':'морковь, свёкла, салат'};
+const WHY={'Паслёновые':'паслёновые забирают много азота — после них почва отдыхает под неприхотливыми тыквенными','Тыквенные':'тыквенные оставляют рыхлую почву и мало общих болезней для луковых','Луковые':'луковые обеззараживают почву фитонцидами — хорошая база для капустных','Капустные':'капустные рыхлят землю глубоко, после них хорошо идут корнеплоды','Корнеплодные и зеленные':'корнеплодные не истощают верхний слой — паслёновые получат своё питание'};
+document.querySelectorAll('.bedsel').forEach(s=>{Object.keys(NAMES).forEach(k=>{const o=document.createElement('option');o.value=k;o.textContent=NAMES[k];s.appendChild(o);});});
+function makePlan(){
+const beds=['b1','b2','b3','b4'].map(id=>document.getElementById(id).value);
+const fams=beds.map(b=>FAM[b]);
+let rows='';
+beds.forEach((b,i)=>{
+const f=fams[i];
+const next=CYCLE[(CYCLE.indexOf(f)+1)%5];
+rows+='<div class="plan-row"><strong>Грядка '+(i+1)+':</strong> было — '+NAMES[b]+' ('+f+') → <span style="color:var(--color-accent);font-weight:bold">сажаем '+MEMBERS[next]+'</span><br><small style="color:#666">Почему: '+WHY[f]+'.</small></div>';
+});
+const dup=fams.some((f,i)=>fams.indexOf(f)!==i);
+const warn=dup?'<div class="warn">⚠️ Внимание: в прошлом году две грядки занимало одно семейство. В новом плане они получат одинаковую культуру — по возможности разнесите их по участку или посейте между ними сидераты.</div>':'';
+document.getElementById('resP').innerHTML='<div class="rb fade-in"><h3>План на следующий сезон</h3>'+rows+warn+'<div class="ti">💡 Правило севооборота: одно семейство возвращается на грядку не раньше, чем через 3–4 года.</div></div>';
+document.getElementById('resP').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
