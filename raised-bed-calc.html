@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Калькулятор высокой грядки: сколько грунта купить — Дача-Счёт</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>.cf{max-width:650px;margin:0 auto}.cf label{display:block;margin-bottom:5px;font-weight:bold}.cf select,.cf input{width:100%;padding:12px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;background:#fff;margin-bottom:15px;box-sizing:border-box}.cf .row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.rb{background:#fff;border:2px solid var(--color-accent);border-radius:12px;padding:25px;margin:25px auto;max-width:650px}.rb h3{color:var(--color-accent);margin-top:0}.rb ul{line-height:2;font-size:1.05rem}.ti{background:#f0fdf4;padding:10px;border-radius:6px;margin-top:15px;font-size:.9rem;color:#14532d}</style>
+</head>
+<body>
+<div class="container">
+<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
+<h1>📦 Калькулятор высокой грядки</h1>
+<p class="subtitle">Сколько грунта и дренажа нужно, чтобы заполнить короб доверху.</p>
+<div class="card cf">
+<div class="row">
+<div><label for="rbL">Длина, м</label><input type="number" id="rbL" value="2" min="0.5" step="0.1"></div>
+<div><label for="rbW">Ширина, м</label><input type="number" id="rbW" value="1.2" min="0.5" step="0.1"></div>
+<div><label for="rbH">Высота бортов, см</label><input type="number" id="rbH" value="40" min="15" step="5"></div>
+</div>
+<label for="rbDrain">Нижний слой (дренаж из веток/щебня)</label>
+<select id="rbDrain"><option value="15">Да, 15 см дренажа</option><option value="0">Нет, только грунт</option></select>
+<label for="rbSoil">Тип грунта (для веса)</label>
+<select id="rbSoil"><option value="0.5">Торф / лёгкий субстрат</option><option value="0.9" selected>Универсальный грунт</option><option value="1.2">Чернозём / тяжёлый</option></select>
+<button onclick="calcBed()" class="btn-link" style="width:100%;border:none;cursor:pointer;font-size:1.1rem;padding:14px">Рассчитать заполнение</button>
+</div>
+<div id="resRB"></div>
+<div class="ad-banner" style="max-width:650px;margin:30px auto">[ Реклама: Грунт в мешках, бортовая доска, геотекстиль ]</div>
+<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+</div>
+<script>
+function calcBed(){
+const L=parseFloat(document.getElementById('rbL').value);
+const W=parseFloat(document.getElementById('rbW').value);
+const H=parseFloat(document.getElementById('rbH').value);
+const dr=parseFloat(document.getElementById('rbDrain').value);
+const dens=parseFloat(document.getElementById('rbSoil').value);
+if(!L||!W||!H)return alert('Заполните размеры');
+const gap=10;
+const soilH=H-gap-dr;
+if(soilH<=0){document.getElementById('resRB').innerHTML='<div class="rb fade-in"><h3>Слишком низкий борт</h3><p>При высоте '+H+' см и дренаже '+dr+' см для грунта не остаётся места. Увеличьте борт минимум до '+(dr+gap+5)+' см.</p></div>';return;}
+const volTotal=Math.round(L*W*H/100*1000);
+const volDrain=dr>0?Math.round(L*W*dr/100*1000):0;
+const volSoil=Math.round(L*W*soilH/100*1000);
+const m50=Math.ceil(volSoil/50);
+const m70=Math.ceil(volSoil/70);
+const kg=Math.round(volSoil*dens);
+const kgT=kg>=1000?(kg/1000).toFixed(2)+' т':kg+' кг';
+document.getElementById('resRB').innerHTML='<div class="rb fade-in"><h3>Короб '+L+'×'+W+'×'+H+' см</h3><ul><li>📦 Полный объём: <strong>'+volTotal+' л</strong></li>'+(dr>0?'<li>🪵 Дренаж (ветки/щёбень): <strong>'+volDrain+' л</strong></li>':'')+'<li>🌱 Грунта нужно: <strong>'+volSoil+' л</strong></li><li>🛒 Мешков 50 л: <strong>'+m50+' шт</strong> · 70 л: <strong>'+m70+' шт</strong></li><li>⚖️ Вес грунта: <strong>~'+kgT+'</strong></li></ul><div class="ti">💡 Укладывайте слоями снизу вверх: дренаж → трава/листья → грунт, смешанный с компостом (1:1). Не досыпайте до краёв — оставьте 10 см, чтобы вода не переливалась при поливе.</div></div>';
+document.getElementById('resRB').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
