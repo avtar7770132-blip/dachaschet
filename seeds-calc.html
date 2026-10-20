@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Калькулятор семян: норма высева — Дача-Счёт</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+.calc-form{max-width:600px;margin:0 auto}
+.calc-form label{display:block;margin-bottom:5px;font-weight:bold}
+.calc-form select,.calc-form input{width:100%;padding:12px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;background:#fff;margin-bottom:15px;box-sizing:border-box}
+.calc-form small{color:#666;display:block;margin-top:-10px;margin-bottom:15px}
+.result-box{background:#fff;border:2px solid var(--color-accent);border-radius:12px;padding:25px;margin:25px auto;max-width:600px}
+.result-box h3{color:var(--color-accent);margin-top:0}
+.result-box ul{line-height:2;font-size:1.1rem}
+.tip-inline{background:#f0fdf4;padding:10px;border-radius:6px;margin-top:15px;font-size:.9rem;color:#14532d}
+</style>
+</head>
+<body>
+<div class="container">
+<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
+<h1>🌱 Калькулятор семян</h1>
+<p class="subtitle">Узнайте точное количество семян для вашей грядки.</p>
+<div class="card calc-form">
+<form id="seedForm">
+<label for="cropType">Культура</label>
+<select id="cropType">
+<option value="tomato">Томаты (рассада)</option>
+<option value="cucumber">Огурцы (прямой посев)</option>
+<option value="carrot">Морковь</option>
+<option value="lettuce">Салат листовой</option>
+<option value="radish">Редис</option>
+<option value="pea">Горох</option>
+<option value="bean">Фасоль</option>
+</select>
+<label for="areaInput">Площадь грядки, м²</label>
+<input type="number" id="areaInput" value="10" min="1" step="0.5">
+<label for="rowSpace">Схема посадки (между рядами), см</label>
+<input type="number" id="rowSpace" value="50" min="10">
+<small>Стандарт: 50–70 см для крупных, 20–30 см для зелени.</small>
+<button type="submit" class="btn-link" style="width:100%;border:none;cursor:pointer;font-size:1.1rem;padding:14px">Рассчитать норму</button>
+</form>
+</div>
+<div id="resultArea"></div>
+<div class="ad-banner" style="max-width:600px;margin:30px auto">[ Реклама: Семена проверенных сортов со скидкой ]</div>
+<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+</div>
+<script>
+const RATES={
+tomato:{rate:0.5,plants:3,name:'Томаты',unit:'гр'},
+cucumber:{rate:1.0,plants:4,name:'Огурцы',unit:'гр'},
+carrot:{rate:0.8,plants:100,name:'Морковь',unit:'гр'},
+lettuce:{rate:0.6,plants:80,name:'Салат',unit:'гр'},
+radish:{rate:1.5,plants:120,name:'Редис',unit:'гр'},
+pea:{rate:20,plants:25,name:'Горох',unit:'шт'},
+bean:{rate:18,plants:20,name:'Фасоль',unit:'шт'}
+};
+document.getElementById('seedForm').addEventListener('submit',function(e){
+e.preventDefault();
+const crop=document.getElementById('cropType').value;
+const areaValue=parseFloat(document.getElementById('areaInput').value);
+const rowCm=parseFloat(document.getElementById('rowSpace').value);
+if(!areaValue||!rowCm)return alert('Заполните все поля');
+const d=RATES[crop];
+const seeds=(d.rate*areaValue*1.15).toFixed(1);
+const plants=Math.round(d.plants*areaValue);
+const rowLen=(areaValue/(rowCm/100)).toFixed(1);
+document.getElementById('resultArea').innerHTML='<div class="result-box fade-in"><h3>Результат: '+d.name+'</h3><p>Для площади <strong>'+areaValue+'</strong> м² потребуется:</p><ul><li>🌱 Семян: <strong>'+seeds+' '+d.unit+'</strong></li><li>🌿 Растений: <strong>'+plants+' шт</strong></li><li>📏 Длина рядов: <strong>'+rowLen+' м</strong></li></ul><div class="tip-inline">💡 Покупайте семена с запасом +15% на брак и пересев.</div></div>';
+document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
+});
+</script>
+</body>
+</html>
