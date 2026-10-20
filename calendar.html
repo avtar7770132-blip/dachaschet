@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лунный календарь садовода 2027 — Дача-Счёт</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+.month-nav{display:flex;justify-content:center;gap:10px;margin-bottom:25px;flex-wrap:wrap}
+.month-btn{padding:8px 14px;border:1px solid var(--color-border);background:#fff;color:var(--color-text-muted);border-radius:20px;cursor:pointer;font-weight:bold}
+.month-btn.active,.month-btn:hover{background:var(--color-accent);color:#fff;border-color:var(--color-accent)}
+.legend-box{display:flex;gap:15px;flex-wrap:wrap;margin-bottom:25px;padding:15px;background:#fff;border-radius:8px;border:1px solid var(--color-border)}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:.9rem;font-weight:bold}
+.color-dot{width:16px;height:16px;border-radius:50%;border:2px solid rgba(0,0,0,.1)}
+.dot-green{background:#dcfce7;border-color:#22c55e}
+.dot-yellow{background:#fef9c3;border-color:#eab308}
+.dot-red{background:#fee2e2;border-color:#ef4444}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:30px}
+.day-header{text-align:center;font-weight:bold;color:var(--color-text-muted);padding:10px 0;font-size:.9rem}
+.day-cell{aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:8px;font-weight:bold;font-size:1.1rem;border:1px solid transparent}
+.day-cell span{font-size:.65rem;font-weight:normal;margin-top:3px;opacity:.85;text-align:center}
+.bg-green{background:#dcfce7;border-color:#22c55e;color:#14532d}
+.bg-yellow{background:#fef9c3;border-color:#eab308;color:#713f12}
+.bg-red{background:#fee2e2;border-color:#ef4444;color:#7f1d1d}
+.bg-empty{background:transparent}
+@media(max-width:600px){.calendar-grid{gap:4px}.day-cell{font-size:.9rem}.day-cell span{font-size:.55rem}}
+</style>
+</head>
+<body>
+<div class="container">
+<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
+<h1>🌙 Лунный календарь 2027</h1>
+<p class="subtitle">Планируйте работы в саду и огороде по фазам Луны.</p>
+<div class="legend-box">
+<div class="legend-item"><div class="color-dot dot-green"></div><span>🌱 Посадка</span></div>
+<div class="legend-item"><div class="color-dot dot-yellow"></div><span>💧 Уход</span></div>
+<div class="legend-item"><div class="color-dot dot-red"></div><span>🚫 Отдых</span></div>
+</div>
+<div class="month-nav" id="monthNav"></div>
+<div class="calendar-grid" id="calendarGrid"></div>
+<div class="ad-banner">[ Реклама: Садовый инвентарь, семена, удобрения ]</div>
+<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+</div>
+<script>
+const MONTHS=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+const WEEKDAYS=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+const MOON={0:[6,20],1:[5,19],2:[7,21],3:[5,19],4:[5,19],5:[3,18],6:[3,17],7:[1,16,31],8:[14,29],9:[13,28],10:[12,27],11:[11,26]};
+function getDayType(m,d){
+const moons=MOON[m]||[];
+for(const x of moons){if(Math.abs(d-x)<=1)return 'red';}
+return Math.ceil(d/7)%2===1?'green':'yellow';
+}
+function renderMonth(mi){
+const grid=document.getElementById('calendarGrid');
+grid.innerHTML='';
+WEEKDAYS.forEach(w=>{const h=document.createElement('div');h.className='day-header';h.textContent=w;grid.appendChild(h);});
+const first=new Date(2027,mi,1).getDay();
+const days=new Date(2027,mi+1,0).getDate();
+const off=first===0?6:first-1;
+for(let i=0;i<off;i++){const c=document.createElement('div');c.className='day-cell bg-empty';grid.appendChild(c);}
+for(let d=1;d<=days;d++){
+const t=getDayType(mi,d);
+const c=document.createElement('div');
+c.className='day-cell bg-'+t;
+const moons=MOON[mi]||[];
+let label=moons.includes(d)?'🌕':(t==='green'?'Посадка':'Уход');
+c.innerHTML=d+'<span>'+label+'</span>';
+grid.appendChild(c);
+}
+document.querySelectorAll('.month-btn').forEach((b,i)=>b.classList.toggle('active',i===mi));
+}
+const nav=document.getElementById('monthNav');
+MONTHS.forEach((m,i)=>{
+const b=document.createElement('button');
+b.className='month-btn';b.textContent=m;
+b.onclick=function(){renderMonth(i);};
+nav.appendChild(b);
+});
+renderMonth(new Date().getMonth());
+</script>
+</body>
+</html>
