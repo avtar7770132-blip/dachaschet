@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дача-Счёт · Калькуляторы для сада и огорода</title>
+<meta name="description" content="Бесплатные онлайн-инструменты для дачников: расчёт семян, удобрений, лунный календарь, совместимость культур.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+<header>
+<h1>🌿 Дача-Счёт</h1>
+<p class="subtitle">Умные помощники для вашего урожая. Без регистрации и смс.</p>
+</header>
+<div class="filters">
+<button onclick="filterCards('all')" class="filter-btn active" id="btn-all">Все инструменты</button>
+<button onclick="filterCards('seeds')" class="filter-btn" id="btn-seeds">🌱 Семена</button>
+<button onclick="filterCards('fertilizer')" class="filter-btn" id="btn-fertilizer">🧪 Удобрения</button>
+<button onclick="filterCards('calendar')" class="filter-btn" id="btn-calendar">📅 Календарь</button>
+<button onclick="filterCards('compatibility')" class="filter-btn" id="btn-compatibility">🤝 Совместимость</button>
+</div>
+<div class="ad-banner">[ Место для рекламы: Баннер 728x90 или блок РСЯ ]</div>
+<div class="grid-container">
+<a href="seeds-calc.html" class="card fade-in" data-category="seeds">
+<div><div class="card-title">🌱 Калькулятор семян</div><div class="card-desc">Сколько граммов семян нужно на вашу грядку? Норма высева для томатов, огурцов, зелени.</div></div>
+<span class="btn-link">Открыть →</span></a>
+<a href="fertilizer-calc.html" class="card fade-in" data-category="fertilizer">
+<div><div class="card-title">🧪 Норма удобрений</div><div class="card-desc">Расчёт мочевины, суперфосфата, золы и навоза под овощи, ягоды и деревья.</div></div>
+<span class="btn-link">Открыть →</span></a>
+<a href="calendar.html" class="card fade-in" data-category="calendar">
+<div><div class="card-title">📅 Лунный календарь 2027</div><div class="card-desc">Что сажать сегодня? Благоприятные дни для посадки, полива и сбора урожая.</div></div>
+<span class="btn-link">Открыть →</span></a>
+<a href="compatibility.html" class="card fade-in" data-category="compatibility">
+<div><div class="card-title">🤝 Совместимость культур</div><div class="card-desc">Какие растения дружат на грядке, а какие угнетают друг друга. 15 культур.</div></div>
+<span class="btn-link">Открыть →</span></a>
+</div>
+<div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid var(--color-accent);text-align:center;padding:30px;margin-bottom:30px">
+<h3 style="color:var(--color-accent);margin-bottom:15px">📚 Читайте блог дачника</h3>
+<p style="color:#666;margin-bottom:20px">Практические советы, разбор ошибок и секреты богатого урожая.</p>
+<a href="blog/index.html" class="btn-link" style="padding:12px 30px;font-size:1.1rem">Перейти к статьям →</a>
+</div>
+<div class="ad-banner">[ Место для рекламы: Партнёрские ссылки Ozon/WB (семена, инвентарь) ]</div>
+<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт · Все расчёты справочные.</footer>
+</div>
+<script>
+function filterCards(category){
+const cards=document.querySelectorAll('.card');
+const buttons=document.querySelectorAll('.filter-btn');
+buttons.forEach(b=>{b.classList.remove('active');if(b.id==='btn-'+category)b.classList.add('active');});
+cards.forEach(c=>{
+if(category==='all'||c.dataset.category===category){c.style.display='flex';c.style.animation='none';c.offsetHeight;c.style.animation=null;}
+else{c.style.display='none';}
+});
+}
+</script>
+</body>
+</html>
