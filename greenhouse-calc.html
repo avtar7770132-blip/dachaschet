@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Калькулятор теплицы: площадь, поликарбонат, вентиляция, обогрев — Дача-Счёт</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>.cf{max-width:650px;margin:0 auto}.cf label{display:block;margin-bottom:5px;font-weight:bold}.cf select,.cf input{width:100%;padding:12px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;background:#fff;margin-bottom:15px;box-sizing:border-box}.rb{background:#fff;border:2px solid var(--color-accent);border-radius:12px;padding:25px;margin:25px auto;max-width:650px}.rb h3{color:var(--color-accent);margin-top:0}.rb ul{line-height:2;font-size:1.05rem}.ti{background:#f0fdf4;padding:10px;border-radius:6px;margin-top:15px;font-size:.9rem;color:#14532d}</style>
+</head>
+<body>
+<div class="container">
+<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
+<h1>🏡 Калькулятор теплицы</h1>
+<p class="subtitle">Площадь, объём, материал покрытия, форточки и мощность обогрева.</p>
+<div class="card cf">
+<label for="gL">Длина, м</label><input type="number" id="gL" value="6" min="2" step="0.5">
+<label for="gW">Ширина, м</label><input type="number" id="gW" value="3" min="2" step="0.5">
+<label for="gH">Высота в коньке, м</label><input type="number" id="gH" value="2.2" min="1.8" step="0.1">
+<label for="gType">Форма</label><select id="gType"><option value="arch">Арочная</option><option value="gable">Двухскатная (домиком)</option></select>
+<label for="gCover">Покрытие</label><select id="gCover"><option value="poly">Поликарбонат</option><option value="film">Плёнка</option></select>
+<label for="gSeason">Режим использования</label><select id="gSeason"><option value="spring">Весна-осень (заморозки)</option><option value="winter">Зима (круглый год)</option></select>
+<button onclick="calcGreen()" class="btn-link" style="width:100%;border:none;cursor:pointer;font-size:1.1rem;padding:14px">Рассчитать теплицу</button>
+</div>
+<div id="resG"></div>
+<div class="ad-banner" style="max-width:650px;margin:30px auto">[ Реклама: Поликарбонат, каркасы, форточки ]</div>
+<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+</div>
+<script>
+function calcGreen(){
+const L=parseFloat(document.getElementById('gL').value);
+const W=parseFloat(document.getElementById('gW').value);
+const H=parseFloat(document.getElementById('gH').value);
+const type=document.getElementById('gType').value;
+const cover=document.getElementById('gCover').value;
+const season=document.getElementById('gSeason').value;
+if(!L||!W||!H)return alert('Заполните размеры');
+const S=L*W;
+const V=Math.round(S*H*(type==='arch'?0.85:0.8));
+let clad;
+if(type==='gable'){
+const hw=0.6*H;const slope=Math.sqrt((W/2)*(W/2)+(H-hw)*(H-hw));
+clad=2*(L+W)*hw+2*L*slope+2*(W*hw+W*(H-hw)/2);
+}else{
+const wallH=Math.max(0,H-W/2);
+const arc=W*(1.57+0.6*(H/W-0.5));
+clad=L*arc+2*L*wallH+2*(W*wallH+0.6*W*Math.min(H,W/2));
+}
+clad=Math.round(clad);
+let mat;
+if(cover==='poly'){mat='Листов поликарбоната (2,1×6 м): <strong>'+Math.ceil(clad*1.1/12.6)+' шт</strong>';}
+else{mat='Плёнки шириной 3 м: <strong>'+Math.ceil(clad*1.1/3)+' пог. м</strong>';}
+const vents=Math.max(2,Math.ceil(S*0.2/0.54));
+const kw=(season==='winter'?(cover==='poly'?0.15:0.25):(cover==='poly'?0.05:0.08))*S;
+document.getElementById('resG').innerHTML='<div class="rb fade-in"><h3>Ваша теплица '+L+'×'+W+' м</h3><ul><li>📐 Площадь: <strong>'+S.toFixed(1)+' м²</strong></li><li>📦 Объём: <strong>'+V+' м³</strong></li><li>🧱 Покрытие (с запасом 10%): <strong>'+clad+' м²</strong></li><li>🛒 '+mat+'</li><li>🌬 Форточек 60×90 см: <strong>'+vents+' шт</strong></li><li>🔥 Обогрев: <strong>'+kw.toFixed(1)+' кВт</strong></li></ul><div class="ti">💡 Форточки ставьте в крыше и торцах: тёплый воздух уходит вверх. Зимой мощность считайте с запасом +20% на сильные морозы.</div></div>';
+document.getElementById('resG').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
