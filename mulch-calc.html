@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Калькулятор мульчи: сколько мешков купить — Дача-Счёт</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>.cf{max-width:650px;margin:0 auto}.cf label{display:block;margin-bottom:5px;font-weight:bold}.cf select,.cf input{width:100%;padding:12px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;background:#fff;margin-bottom:15px;box-sizing:border-box}.cf .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.rb{background:#fff;border:2px solid var(--color-accent);border-radius:12px;padding:25px;margin:25px auto;max-width:650px}.rb h3{color:var(--color-accent);margin-top:0}.rb ul{line-height:2;font-size:1.05rem}.ti{background:#f0fdf4;padding:10px;border-radius:6px;margin-top:15px;font-size:.9rem;color:#14532d}.wn{background:#fee2e2;border-left:4px solid #ef4444;padding:10px;border-radius:6px;margin-top:15px;font-size:.9rem;color:#7f1d1d}</style>
+</head>
+<body>
+<div class="container">
+<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
+<h1>🍂 Калькулятор мульчи</h1>
+<p class="subtitle">Сколько кубов, мешков и килограммов мульчи нужно на вашу площадь.</p>
+<div class="card cf">
+<div class="row">
+<div><label for="muA">Площадь, м²</label><input type="number" id="muA" value="10" min="1" step="0.5"></div>
+<div><label for="muT">Толщина слоя, см</label><input type="number" id="muT" value="5" min="2" step="1"></div>
+</div>
+<label for="muType">Тип мульчи</label>
+<select id="muType">
+<option value="350|0|Кора хвойная">Кора хвойная (закисляет)</option>
+<option value="300|0|Щепа декоративная">Щепа декоративная</option>
+<option value="250|0|Опилки (перепревшие)">Опилки перепревшие</option>
+<option value="100|0.4|Солома">Солома (усаживается)</option>
+<option value="200|0.5|Скошенная трава">Скошенная трава (усаживается)</option>
+<option value="80|0.3|Листва">Опавшая листва (усаживается)</option>
+<option value="1600|0|Гравий / камень">Гравий / камень (неорганика)</option>
+</select>
+<button onclick="calcMulch()" class="btn-link" style="width:100%;border:none;cursor:pointer;font-size:1.1rem;padding:14px">Рассчитать мульчу</button>
+</div>
+<div id="resMU"></div>
+<div class="ad-banner" style="max-width:650px;margin:30px auto">[ Реклама: Мешки коры, щепа, агроволокно ]</div>
+<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+</div>
+<script>
+function calcMulch(){
+const A=parseFloat(document.getElementById('muA').value);
+const T=parseFloat(document.getElementById('muT').value);
+const parts=document.getElementById('muType').value.split('|');
+const dens=parseFloat(parts[0]);
+const shrink=parseFloat(parts[1]);
+const name=parts[2];
+if(!A||!T)return alert('Заполните площадь и толщину');
+const vol=A*T/100;
+const buyVol=shrink>0?vol/(1-shrink):vol;
+const kg=Math.round(buyVol*dens);
+const m50=Math.ceil(buyVol/0.05);
+const m70=Math.ceil(buyVol/0.07);
+const kgT=kg>=1000?(kg/1000).toFixed(2)+' т':kg+' кг';
+let warn='';
+if(name==='Солома')warn='<div class="wn">⚠️ Солома под клубникой и земляникой привлекает мышей — держите ловушки или замените на агроволокно.</div>';
+if(name==='Кора хвойная')warn='<div class="wn">⚠️ Кора закисляет почву: не мульчируйте ею капусту, свёклу и картофель — они любят нейтральную землю. Зато идеальна под голубику, клюкву, рододендроны и клубнику.</div>';
+if(name==='Скошенная трава'||name==='Опавшая листва')warn='<div class="wn">⚠️ Свежая трава и листва с семенами сорняков засорят грядку. Сушите слой 2–3 дня перед укладкой или берите только без семян.</div>';
+if(name==='Опилки (перепревшие)')warn='<div class="wn">⚠️ Свежие опилки вытягивают азот. Используйте только перепревшие (отлежавшие год) или подсыпайте мочевину: 20 г на ведро.</div>';
+document.getElementById('resMU').innerHTML='<div class="rb fade-in"><h3>Мульча: '+name+'</h3><ul><li>📐 Площадь: <strong>'+A+' м²</strong> · слой: <strong>'+T+' см</strong></li><li>📦 Объём на выходе: <strong>'+vol.toFixed(2)+' м³</strong>'+(shrink>0?' (после усадки)':'')+'</li><li>🛒 Покупать с запасом на усадку: <strong>'+buyVol.toFixed(2)+' м³</strong></li><li>🧺 Мешков 50 л: <strong>'+m50+' шт</strong> · 70 л: <strong>'+m70+' шт</strong></li><li>⚖️ Вес: <strong>~'+kgT+'</strong></li></ul>'+(warn||'<div class="ti">✅ Этот тип мульчи универсален и не имеет критичных ограничений по культурам.</div>')+'<div class="ti">💡 Мульчируйте по влажной земле после полива, отступая 3–5 см от стебля, чтобы он не подпревал. Обновляйте слой раз в сезон.</div></div>';
+document.getElementById('resMU').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
