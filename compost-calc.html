@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Калькулятор компоста: соотношение зелёного и коричневого — Дача-Счёт</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>.cf{max-width:650px;margin:0 auto}.cf label{display:block;margin-bottom:5px;font-weight:bold}.cf select,.cf input{width:100%;padding:12px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;background:#fff;margin-bottom:15px;box-sizing:border-box}.rb{background:#fff;border:2px solid var(--color-accent);border-radius:12px;padding:25px;margin:25px auto;max-width:650px}.rb h3{color:var(--color-accent);margin-top:0}.rb ul{line-height:2;font-size:1.05rem}.ti{background:#f0fdf4;padding:10px;border-radius:6px;margin-top:15px;font-size:.9rem;color:#14532d}</style>
+</head>
+<body>
+<div class="container">
+<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
+<h1>♻️ Калькулятор компоста</h1>
+<p class="subtitle">Сколько «коричневого» добавить к вашему «зелёному», чтобы компост созрел, а не протух.</p>
+<div class="card cf">
+<label for="greenB">Объём «зелёного», вёдер</label>
+<input type="number" id="greenB" value="10" min="1">
+<label for="greenT">Что за «зелёное» (азот)</label>
+<select id="greenT"><option value="1">Скошенная трава, сорняки</option><option value="0.8">Пищевые отходы (очистки)</option><option value="1.4">Свежий навоз / помёт</option></select>
+<label for="brownT">Чем сбалансируем («коричневое», углерод)</label>
+<select id="brownT"><option value="1">Опавшие листья</option><option value="1.1">Солома, сено</option><option value="1.2">Картон, бумага</option><option value="1.5">Опилки, стружка</option></select>
+<button onclick="calcCompost()" class="btn-link" style="width:100%;border:none;cursor:pointer;font-size:1.1rem;padding:14px">Рассчитать компост</button>
+</div>
+<div id="resC"></div>
+<div class="ad-banner" style="max-width:650px;margin:30px auto">[ Реклама: Компостеры, измельчители, ЭМ-препараты ]</div>
+<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+</div>
+<script>
+function calcCompost(){
+const g=parseFloat(document.getElementById('greenB').value);
+const gn=parseFloat(document.getElementById('greenT').value);
+const bc=parseFloat(document.getElementById('brownT').value);
+if(!g||g<=0)return alert('Введите объём');
+const ratio=2.5*gn/bc;
+const brown=Math.round(g*ratio);
+const total=g+brown;
+const out=Math.round(total*0.4);
+document.getElementById('resC').innerHTML='<div class="rb fade-in"><h3>Ваша компостная куча</h3><ul><li>🟢 «Зелёного»: <strong>'+g+' вёдер</strong></li><li>🟤 Добавить «коричневого»: <strong>'+brown+' вёдер</strong></li><li>📦 Общий объём закладки: <strong>'+total+' вёдер</strong></li><li>🌱 Готового компоста на выходе: <strong>~'+out+' вёдер</strong> (через 3–6 мес)</li></ul><div class="ti">💡 Влажность — как у отжатой губки. Переворачивайте раз в неделю — созреет за 2–3 месяца; без переворота ждите 6–12. Слои укладывайте по 15–20 см, чередуя зелёное и коричневое.</div></div>';
+document.getElementById('resC').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
