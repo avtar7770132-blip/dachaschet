@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Калькулятор полива: сколько литров на грядку — Дача-Счёт</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>.cf{max-width:650px;margin:0 auto}.cf label{display:block;margin-bottom:5px;font-weight:bold}.cf select,.cf input{width:100%;padding:12px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;background:#fff;margin-bottom:15px;box-sizing:border-box}.rb{background:#fff;border:2px solid var(--color-accent);border-radius:12px;padding:25px;margin:25px auto;max-width:650px}.rb h3{color:var(--color-accent);margin-top:0}.rb ul{line-height:2;font-size:1.05rem}.ti{background:#f0fdf4;padding:10px;border-radius:6px;margin-top:15px;font-size:.9rem;color:#14532d}</style>
+</head>
+<body>
+<div class="container">
+<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
+<h1>💧 Калькулятор полива</h1>
+<p class="subtitle">Сколько литров воды нужно вашей грядке за полив и за неделю.</p>
+<div class="card cf">
+<label for="cropW">Культура</label>
+<select id="cropW">
+<option value="tomato">Томаты</option><option value="cucumber">Огурцы</option><option value="potato">Картофель</option><option value="carrot">Морковь</option><option value="cabbage">Капуста</option><option value="strawberry">Клубника</option><option value="beet">Свёкла</option><option value="pepper">Перец</option>
+</select>
+<label for="areaW">Площадь грядки, м²</label>
+<input type="number" id="areaW" value="10" min="1" step="0.5">
+<label for="soilW">Тип почвы</label>
+<select id="soilW"><option value="1.2">Песчаная (вода уходит быстро)</option><option value="1" selected>Суглинок (средняя)</option><option value="0.85">Глинистая (держит воду)</option></select>
+<label for="methodW">Способ полива</label>
+<select id="methodW"><option value="0.85">Капельный</option><option value="1" selected>Лейка / шланг под корень</option><option value="1.15">Дождевание (с потерями)</option></select>
+<button onclick="calcWater()" class="btn-link" style="width:100%;border:none;cursor:pointer;font-size:1.1rem;padding:14px">Рассчитать полив</button>
+</div>
+<div id="resW"></div>
+<div class="ad-banner" style="max-width:650px;margin:30px auto">[ Реклама: Шланги, капельный полив, таймеры ]</div>
+<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+</div>
+<script>
+const WN={tomato:{n:6,f:2,name:'Томаты'},cucumber:{n:5,f:3,name:'Огурцы'},potato:{n:3.5,f:1.5,name:'Картофель'},carrot:{n:3.5,f:1.5,name:'Морковь'},cabbage:{n:7,f:2,name:'Капуста'},strawberry:{n:3.5,f:2,name:'Клубника'},beet:{n:4,f:1.5,name:'Свёкла'},pepper:{n:5,f:2,name:'Перец'}};
+function calcWater(){
+const c=WN[document.getElementById('cropW').value];
+const a=parseFloat(document.getElementById('areaW').value);
+const s=parseFloat(document.getElementById('soilW').value);
+const m=parseFloat(document.getElementById('methodW').value);
+if(!a||a<=0)return alert('Введите площадь');
+const per=Math.round(c.n*a*s*m);
+const week=Math.round(per*c.f);
+document.getElementById('resW').innerHTML='<div class="rb fade-in"><h3>Полив: '+c.name+'</h3><ul><li>💧 За один полив: <strong>'+per+' л</strong></li><li>📅 Поливов в неделю: <strong>'+c.f+'</strong></li><li>🛢 Расход в неделю: <strong>'+week+' л</strong></li></ul><div class="ti">💡 Поливайте утром или вечером: днём до 40% воды испаряется. Проверка влажности: сожмите землю в кулаке — комок держится, значит полив не нужен.</div></div>';
+document.getElementById('resW').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
