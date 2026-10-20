@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Совместимость культур на грядке — Дача-Счёт</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+.crop-selector{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:30px}
+.crop-btn{padding:12px 10px;border:2px solid var(--color-border);background:#fff;border-radius:10px;cursor:pointer;font-weight:bold;font-size:.95rem;text-align:center}
+.crop-btn:hover{border-color:var(--color-accent)}
+.crop-btn.active{background:var(--color-accent);color:#fff;border-color:var(--color-accent)}
+.result-card{background:#fff;border:1px solid var(--color-border);border-radius:12px;padding:25px;margin-bottom:30px}
+.result-title{font-size:1.5rem;color:var(--color-accent);margin-bottom:20px;text-align:center}
+.relations{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.relation-block{padding:15px;border-radius:10px;border:1px solid}
+.relation-block h4{margin:0 0 10px;font-size:1.1rem}
+.relation-block ul{margin:0;padding-left:20px;line-height:1.8}
+.friends{background:#dcfce7;border-color:#22c55e}.friends h4{color:#14532d}
+.enemies{background:#fee2e2;border-color:#ef4444}.enemies h4{color:#7f1d1d}
+.neutral{background:#fef9c3;border-color:#eab308}.neutral h4{color:#713f12}
+.tip-box{background:#f0fdf4;border-left:4px solid var(--color-accent);padding:15px;border-radius:8px;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="container">
+<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
+<h1>🤝 Совместимость культур</h1>
+<p class="subtitle">Выберите растение — узнайте, с кем оно дружит, а с кем враждует.</p>
+<div class="crop-selector" id="cropSelector"></div>
+<div id="resultArea"></div>
+<div class="ad-banner">[ Реклама: Семена проверенных сортов, удобрения ]</div>
+<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+</div>
+<script>
+const CROPS={
+tomato:{name:'🍅 Томат',f:['Базилик','Морковь','Лук','Чеснок','Петрушка','Бархатцы'],e:['Картофель','Фенхель','Укроп (взрослый)','Горох'],n:['Огурец','Свёкла','Салат'],t:'Базилик отпугивает тлю и улучшает вкус плодов.'},
+cucumber:{name:'🥒 Огурец',f:['Укроп','Горох','Фасоль','Салат','Капуста','Чеснок'],e:['Томат','Картофель','Редис','Шалфей'],n:['Морковь','Лук','Кукуруза'],t:'Огурцу нужна влажность, томату — сухость. Не сажайте в одной теплице!'},
+potato:{name:'🥔 Картофель',f:['Фасоль','Горох','Капуста','Кукуруза','Хрен','Бархатцы'],e:['Томат','Огурец','Тыква','Подсолнечник'],n:['Морковь','Свёкла','Лук'],t:'Бархатцы между рядами отпугивают колорадского жука.'},
+carrot:{name:'🥕 Морковь',f:['Лук','Томат','Горох','Редис','Салат','Шалфей'],e:['Укроп','Фенхель','Анис','Сельдерей'],n:['Огурец','Картофель','Свёкла'],t:'Лук и морковь отпугивают мух друг друга.'},
+onion:{name:'🧅 Лук',f:['Морковь','Свёкла','Томат','Огурец','Клубника'],e:['Фасоль','Горох','Шалфей','Спаржа'],n:['Картофель','Капуста','Перец'],t:'Лук рядом с клубникой защищает от серой гнили.'},
+garlic:{name:'🧄 Чеснок',f:['Томат','Огурец','Морковь','Клубника','Роза'],e:['Фасоль','Горох','Капуста'],n:['Картофель','Свёкла','Лук'],t:'Чеснок — природный фунгицид для роз и ягод.'},
+cabbage:{name:'🥬 Капуста',f:['Укроп','Сельдерей','Мята','Лук','Огурец','Фасоль'],e:['Клубника','Томат','Виноград'],n:['Морковь','Свёкла','Картофель'],t:'Укроп привлекает божьих коровок против тли.'},
+pepper:{name:'🌶 Перец',f:['Базилик','Морковь','Лук','Шпинат','Бархатцы'],e:['Фенхель','Фасоль','Свёкла'],n:['Томат','Огурец','Капуста'],t:'Перец и базилик — лучшие соседи в теплице.'},
+eggplant:{name:'🍆 Баклажан',f:['Фасоль','Горох','Шпинат','Тимьян','Бархатцы'],e:['Фенхель','Огурец','Томат (близко)'],n:['Перец','Лук','Морковь'],t:'Минимум 50 см между кустами — не любит тесноту.'},
+pea:{name:'🫛 Горох',f:['Морковь','Огурец','Редис','Кукуруза','Капуста','Картофель'],e:['Лук','Чеснок','Томат','Подсолнечник'],n:['Свёкла','Салат','Шпинат'],t:'Горох обогащает почву азотом.'},
+bean:{name:'🫘 Фасоль',f:['Картофель','Огурец','Кукуруза','Свёкла','Капуста','Клубника'],e:['Лук','Чеснок','Фенхель','Горох'],n:['Морковь','Редис','Салат'],t:'Фасоль и кукуруза — классическая пара.'},
+beet:{name:'🟣 Свёкла',f:['Лук','Капуста','Салат','Огурец','Фасоль'],e:['Горчица','Кукуруза'],n:['Морковь','Томат','Картофель'],t:'Салат притеняет свёклу от палящего солнца.'},
+radish:{name:'🔴 Редис',f:['Морковь','Огурец','Горох','Салат','Шпинат','Фасоль'],e:['Иссоп'],n:['Томат','Капуста','Лук'],t:'Отличный уплотнитель между рядами моркови.'},
+lettuce:{name:'🥗 Салат',f:['Морковь','Редис','Огурец','Клубника','Свёкла'],e:['Петрушка','Сельдерей'],n:['Томат','Капуста','Лук'],t:'Работает как живая мульча между культурами.'},
+strawberry:{name:'🍓 Клубника',f:['Лук','Чеснок','Шпинат','Фасоль','Тимьян','Бархатцы'],e:['Капуста','Томат','Картофель','Малина'],n:['Морковь','Свёкла','Салат'],t:'Бархатцы отпугивают нематоду — врага ягоды №1.'}
+};
+function showResult(key,btn){
+document.querySelectorAll('.crop-btn').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+const c=CROPS[key];
+const li=a=>a.map(x=>'<li>'+x+'</li>').join('');
+document.getElementById('resultArea').innerHTML='<div class="result-card fade-in"><div class="result-title">'+c.name+'</div><div class="relations"><div class="relation-block friends"><h4>✅ Друзья</h4><ul>'+li(c.f)+'</ul></div><div class="relation-block enemies"><h4>❌ Враги</h4><ul>'+li(c.e)+'</ul></div><div class="relation-block neutral"><h4>😐 Нейтральные</h4><ul>'+li(c.n)+'</ul></div></div><div class="tip-box"><strong>💡 Совет:</strong> '+c.t+'</div></div>';
+}
+const sel=document.getElementById('cropSelector');
+Object.keys(CROPS).forEach((k,i)=>{
+const b=document.createElement('button');
+b.className='crop-btn';b.textContent=CROPS[k].name;
+b.onclick=function(){showResult(k,b);};
+sel.appendChild(b);
+if(i===0)showResult(k,b);
+});
+</script>
+</body>
+</html>
