@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Калькулятор урожая: сколько кг соберёте с грядки — Дача-Счёт</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>.cf{max-width:650px;margin:0 auto}.cf label{display:block;margin-bottom:5px;font-weight:bold}.cf select,.cf input{width:100%;padding:12px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;background:#fff;margin-bottom:15px;box-sizing:border-box}.rb{background:#fff;border:2px solid var(--color-accent);border-radius:12px;padding:25px;margin:25px auto;max-width:650px}.rb h3{color:var(--color-accent);margin-top:0}.rb ul{line-height:2;font-size:1.05rem}.ti{background:#f0fdf4;padding:10px;border-radius:6px;margin-top:15px;font-size:.9rem;color:#14532d}</style>
+</head>
+<body>
+<div class="container">
+<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
+<h1>🧺 Калькулятор урожая</h1>
+<p class="subtitle">Прогноз урожая в килограммах под вашу площадь и уровень ухода.</p>
+<div class="card cf">
+<label for="cropH">Культура</label>
+<select id="cropH">
+<option value="tomato">Томаты</option><option value="cucumber">Огурцы</option><option value="potato">Картофель</option><option value="carrot">Морковь</option><option value="cabbage">Капуста</option><option value="strawberry">Клубника</option><option value="zucchini">Кабачки</option><option value="pepper">Перец</option>
+</select>
+<label for="placeH">Где растёт</label>
+<select id="placeH"><option value="open">Открытый грунт</option><option value="green">Теплица</option></select>
+<label for="areaH">Площадь, м²</label>
+<input type="number" id="areaH" value="10" min="1" step="0.5">
+<label for="careH">Уровень ухода</label>
+<select id="careH"><option value="0.8">Минимальный (полил и забыл)</option><option value="1" selected>Регулярный (полив, прополка)</option><option value="1.25">Интенсивный (капля, подкормки, подвязка)</option></select>
+<button onclick="calcHarvest()" class="btn-link" style="width:100%;border:none;cursor:pointer;font-size:1.1rem;padding:14px">Спрогнозировать урожай</button>
+</div>
+<div id="resH"></div>
+<div class="ad-banner" style="max-width:650px;margin:30px auto">[ Реклама: Тара, сушилки, банки для заготовок ]</div>
+<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+</div>
+<script>
+const HY={tomato:{open:6,green:10,d:3,name:'Томаты'},cucumber:{open:8,green:14,d:3,name:'Огурцы'},potato:{open:3,green:3,d:5,name:'Картофель'},carrot:{open:4.5,green:4.5,d:100,name:'Морковь'},cabbage:{open:7,green:7,d:4,name:'Капуста'},strawberry:{open:1,green:1.4,d:6,name:'Клубника'},zucchini:{open:9,green:9,d:1,name:'Кабачки'},pepper:{open:4,green:6,d:4,name:'Перец'}};
+function calcHarvest(){
+const c=HY[document.getElementById('cropH').value];
+const place=document.getElementById('placeH').value;
+const a=parseFloat(document.getElementById('areaH').value);
+const care=parseFloat(document.getElementById('careH').value);
+if(!a||a<=0)return alert('Введите площадь');
+const base=c[place]*a*care;
+const min=Math.round(base*0.8);const max=Math.round(base*1.2);
+const plants=Math.round(c.d*a);
+const perPlant=(base/plants).toFixed(1);
+document.getElementById('resH').innerHTML='<div class="rb fade-in"><h3>Прогноз: '+c.name+'</h3><ul><li>🧺 Ожидаемый урожай: <strong>'+min+'–'+max+' кг</strong></li><li>🌿 Растений на площади: <strong>~'+plants+' шт</strong></li><li>⚖️ С одного растения: <strong>~'+perPlant+' кг</strong></li></ul><div class="ti">💡 Прогноз усреднён по средней полосе. Юг даёт +20–30%, Урал и Сибирь без теплицы −20–30%.</div></div>';
+document.getElementById('resH').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
