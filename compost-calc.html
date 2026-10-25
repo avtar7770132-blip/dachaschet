@@ -3,103 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Калькулятор компоста: соотношение зелёного и коричневого — Дача-Счёт</title>
+<title>Калькулятор компоста — Дача-Счёт</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
-<style>.cf{max-width:650px;margin:0 auto}.cf label{display:block;margin-bottom:5px;font-weight:bold}.cf select,.cf input{width:100%;padding:12px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;background:#fff;margin-bottom:15px;box-sizing:border-box}.rb{background:#fff;border:2px solid var(--color-accent);border-radius:12px;padding:25px;margin:25px auto;max-width:650px}.rb h3{color:var(--color-accent);margin-top:0}.rb ul{line-height:2;font-size:1.05rem}.ti{background:#f0fdf4;padding:10px;border-radius:6px;margin-top:15px;font-size:.9rem;color:#14532d}</style>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "z26px2msaf");</script>
+<style>.result-box{background:rgba(255,255,255,0.9);border-left:5px solid #4CAF50;padding:25px;border-radius:12px;margin-top:30px;display:none}.compost-value{font-size:2.5rem;font-weight:800;color:#2E7D32;text-align:center;margin:10px 0}.ad-banner{background:rgba(76,175,80,0.08);border:1px dashed #4CAF50;border-radius:12px;padding:25px;text-align:center;margin:30px 0}.ad-banner h3{color:#2E7D32;margin-top:0;font-size:1.3rem}.ad-btn{display:inline-block;background:#4CAF50;color:white;text-decoration:none;padding:12px 28px;border-radius:8px;font-weight:bold;transition:0.3s;margin-top:10px}.ad-btn:hover{background:#388E3C;transform:scale(1.05)}.ad-mark{font-size:0.7rem;color:#888;margin-top:10px;display:block;line-height:1.4}.input-styled{width:100%;padding:12px;border:1px solid #C8E6C9;border-radius:8px;background:white;font-size:1rem;margin-bottom:20px}</style>
 </head>
-<!-- MICROSOFT CLARITY НАЧАЛО -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "z11gfeuel9");
-</script>
-<!-- MICROSOFT CLARITY КОНЕЦ --><body>
+<body>
 <div class="container">
-<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
-<h1>♻️ Калькулятор компоста</h1>
-<p class="subtitle">Сколько «коричневого» добавить к вашему «зелёному», чтобы компост созрел, а не протух.</p>
-<div class="card cf">
-<label for="greenB">Объём «зелёного», вёдер</label>
-<input type="number" id="greenB" value="10" min="1">
-<label for="greenT">Что за «зелёное» (азот)</label>
-<select id="greenT"><option value="1">Скошенная трава, сорняки</option><option value="0.8">Пищевые отходы (очистки)</option><option value="1.4">Свежий навоз / помёт</option></select>
-<label for="brownT">Чем сбалансируем («коричневое», углерод)</label>
-<select id="brownT"><option value="1">Опавшие листья</option><option value="1.1">Солома, сено</option><option value="1.2">Картон, бумага</option><option value="1.5">Опилки, стружка</option></select>
-<button onclick="calcCompost()" class="btn-link" style="width:100%;border:none;cursor:pointer;font-size:1.1rem;padding:14px">Рассчитать компост</button>
+<header style="margin-bottom:20px"><a href="index.html" style="color:#4CAF50;font-weight:bold;text-decoration:none">← На главную</a></header>
+<img src="compost-calc.jpg" alt="Компост" style="width:100%;height:250px;object-fit:cover;border-radius:16px;margin-bottom:30px;box-shadow:0 8px 20px rgba(0,0,0,0.1)">
+<h1 style="color:#2E7D32">♻️ Калькулятор компоста</h1>
+<p class="subtitle">Баланс зелёного и коричневого, выход и сроки созревания.</p>
+<div class="card" style="max-width:600px;margin:0 auto">
+<div class="form-group"><label style="display:block;margin-bottom:8px;font-weight:600;color:#2E7D32">Объём сырья (вёдра)</label><input type="number" id="vol" placeholder="10" class="input-styled"></div>
+<div class="form-group"><label style="display:block;margin-bottom:8px;font-weight:600;color:#2E7D32">Соотношение (зелёное:коричневое)</label><select id="ratio" class="input-styled"><option value="1">1:1 (быстрый)</option><option value="2">1:2 (стандарт)</option><option value="3">1:3 (медленный)</option></select></div>
+<button onclick="calc()" style="width:100%;padding:14px;background:#4CAF50;color:white;border:none;border-radius:8px;font-weight:bold;font-size:1.1rem;cursor:pointer">Рассчитать выход</button>
+<div id="res" class="result-box"><div class="compost-value" id="val">0 кг</div><div style="text-align:center;color:#555" id="desc">Готового компоста через 3-6 мес.</div></div>
+<div class="ad-banner"><h3>🏡 Всё для дачи и сада в одном месте</h3><p style="margin-bottom:10px;color:#555">Инструменты, удобрения, семена и декор со скидкой до 40%.</p><a href="https://ru.trackerpro.org/6adcc9d6a4934?erid=2SDnjek8Bjn" target="_blank" rel="nofollow noopener" class="ad-btn">Перейти в магазин Твой Дом →</a><span class="ad-mark">Реклама. АО "КРОКУС", ИНН 7728115183. Сайт https://tvoydom.ru<br>erid: 2SDnjek8Bjn</span></div>
 </div>
-<div id="resC"></div>
-<div class="ad-banner" style="max-width:650px;margin:30px auto">[ Реклама: Компостеры, измельчители, ЭМ-препараты ]</div>
-<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+<footer style="text-align:center;margin-top:40px;color:#888">© 2026 Дача-Счёт</footer>
 </div>
-<script>
-function calcCompost(){
-const g=parseFloat(document.getElementById('greenB').value);
-const gn=parseFloat(document.getElementById('greenT').value);
-const bc=parseFloat(document.getElementById('brownT').value);
-if(!g||g<=0)return alert('Введите объём');
-const ratio=2.5*gn/bc;
-const brown=Math.round(g*ratio);
-const total=g+brown;
-const out=Math.round(total*0.4);
-document.getElementById('resC').innerHTML='<div class="rb fade-in"><h3>Ваша компостная куча</h3><ul><li>🟢 «Зелёного»: <strong>'+g+' вёдер</strong></li><li>🟤 Добавить «коричневого»: <strong>'+brown+' вёдер</strong></li><li>📦 Общий объём закладки: <strong>'+total+' вёдер</strong></li><li>🌱 Готового компоста на выходе: <strong>~'+out+' вёдер</strong> (через 3–6 мес)</li></ul><div class="ti">💡 Влажность — как у отжатой губки. Переворачивайте раз в неделю — созреет за 2–3 месяца; без переворота ждите 6–12. Слои укладывайте по 15–20 см, чередуя зелёное и коричневое.</div></div>';
-document.getElementById('resC').scrollIntoView({behavior:'smooth'});
-}
-</script>
-<!-- ИСПРАВЛЕННЫЙ СКРИПТ ДЛЯ КАЛЬКУЛЯТОРОВ -->
-<script>
-(function() {
-    const pageName = window.location.pathname.split('/').pop().replace('.html', '');
-    const imgMap = {
-        'seeds-calc': 'seeds-calc.jpg',
-        'fertilizer-calc': 'fertilizer-calc.jpg',
-        'water-calc': 'watering-calc.jpg',
-        'compost-calc': 'compost-calc.jpg',
-        'raised-bed-calc': 'bed-planner.jpg',
-        'spacing-calc': 'bed-planner.jpg',
-        'mulch-calc': 'mulching.jpg',
-        'greenhouse-calc': 'greenhouse-calc.jpg',
-        'harvest-calc': 'harvest-calc.jpg',
-        'calendar': 'calendar-dacha.jpg',
-        'compatibility': 'compatibility.jpg',
-        'beds-planner': 'bed-planner.jpg'
-    };
-    
-    const container = document.querySelector('.container');
-    if (container) {
-        // Удаляем старые заглушки или SVG, если есть
-        const existingImgs = container.querySelectorAll('img');
-        existingImgs.forEach(img => {
-            if (img.src.includes('data:image') || img.classList.contains('placeholder')) {
-                img.remove();
-            }
-        });
-        
-        // Добавляем картинку, если её нет
-        if (!container.querySelector('img[src$=".jpg"]')) {
-            const imgSrc = imgMap[pageName] || 'hero-dacha.jpg';
-            const img = document.createElement('img');
-            img.src = imgSrc;
-            img.alt = 'Дача-Счёт';
-            img.style.cssText = 'width:100%; height:250px; object-fit:cover; border-radius:16px; margin-bottom:25px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);';
-            container.insertBefore(img, container.children[1]);
-        }
-    }
-
-    const partnerHTML = `
-    <div style="text-align:center; margin:35px auto; padding:25px; background:rgba(76,175,80,0.08); border-radius:12px; border:1px dashed #4CAF50; max-width:650px;">
-        <div style="font-weight:bold; color:#2E7D32; margin-bottom:10px; font-size:1.2rem;">🏡 Всё для дачи и сада в одном месте</div>
-        <p style="margin-bottom:15px; color:#555;">Инструменты, удобрения, семена и декор со скидкой до 40%.</p>
-        <a href="https://ru.trackerpro.org/6adcc9d6a4934?erid=2SDnjek8Bjn" target="_blank" rel="nofollow noopener" style="display:inline-block; background:#4CAF50; color:white; text-decoration:none; padding:12px 28px; border-radius:8px; font-weight:bold; transition:0.3s;">Перейти в Твой Дом →</a>
-        <div style="font-size:0.7rem; color:#888; margin-top:10px; line-height:1.4;">Реклама. АО "КРОКУС", ИНН 7728115183. Сайт https://tvoydom.ru<br>erid: 2SDnjek8Bjn</div>
-    </div>`;
-    
-    const footer = document.querySelector('footer');
-    if (footer && !footer.previousElementSibling?.classList.contains('ad-banner')) {
-        footer.insertAdjacentHTML('beforebegin', partnerHTML);
-    }
-})();
-</script></body>
+<script>function calc(){const v=parseFloat(document.getElementById('vol').value),r=parseFloat(document.getElementById('ratio').value);if(!v||v<=0)return alert('Введите объём');const out=Math.round(v*0.6/r);document.getElementById('res').style.display='block';document.getElementById('val').innerText=out+' кг';document.getElementById('desc').innerText='Выход компоста из '+v+' вёдер'}</script>
+</body>
 </html>
