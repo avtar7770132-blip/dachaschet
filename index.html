@@ -3,207 +3,129 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Дача-Счёт · 12 калькуляторов для сада и огорода</title>
-<meta name="description" content="12 бесплатных инструментов для дачников: семена, удобрения, полив, компост, теплица, севооборот, урожай, высокая грядка, схема посадки, мульча, лунный календарь, совместимость.">
+<title>Дача-Счёт · 12 калькуляторов для урожая</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
-<style>
-.hero{position:relative;width:100%;border-radius:16px;overflow:hidden;margin-bottom:30px;box-shadow:0 10px 30px rgba(22,163,74,.18);border:1px solid var(--color-border);background:#e0f2fe}
-.hero svg{display:block;width:100%;height:auto}
-.hero-badge{position:absolute;left:20px;top:20px;background:rgba(255,255,255,.9);backdrop-filter:blur(4px);color:var(--color-accent);font-weight:bold;font-size:.85rem;padding:8px 14px;border-radius:20px;border:1px solid var(--color-border);box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.hero-tag{position:absolute;right:20px;bottom:20px;background:var(--color-accent);color:#fff;font-weight:bold;font-size:.85rem;padding:8px 14px;border-radius:20px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
-@media(max-width:600px){.hero-badge{left:12px;top:12px;font-size:.75rem;padding:6px 10px}.hero-tag{right:12px;bottom:12px;font-size:.75rem;padding:6px 10px}}
-</style>
-</head>
-<!-- MICROSOFT CLARITY НАЧАЛО -->
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "z11gfeuel9");
+    })(window, document, "clarity", "script", "z26px2msaf");
 </script>
-<!-- MICROSOFT CLARITY КОНЕЦ --><body>
+<style>
+.hero-img { width: 100%; height: 350px; object-fit: cover; border-radius: 16px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.ad-banner { background: rgba(76,175,80,0.08); border: 1px dashed #4CAF50; border-radius: 12px; padding: 25px; text-align: center; margin: 30px 0; }
+.ad-banner h3 { color: #2E7D32; margin-top: 0; font-size: 1.4rem; }
+.ad-banner p { color: #555; margin-bottom: 15px; }
+.ad-btn { display: inline-block; background: #4CAF50; color: white; text-decoration: none; padding: 12px 28px; border-radius: 8px; font-weight: bold; transition: 0.3s; }
+.ad-btn:hover { background: #388E3C; transform: scale(1.05); }
+.ad-mark { font-size: 0.7rem; color: #888; margin-top: 10px; display: block; line-height: 1.4; }
+.card img { width: 100%; height: 140px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; }
+.filter-tags { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 25px 0; }
+.tag { padding: 8px 16px; background: rgba(76,175,80,0.1); border-radius: 20px; font-size: 0.9rem; color: #2E7D32; cursor: pointer; }
+.tag.active { background: #4CAF50; color: white; }
+</style>
+</head>
+<body>
 <div class="container">
 
-<div class="hero">
-  <svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Дачная грядка на рассвете">
-    <defs>
-      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#bae6fd"/><stop offset="1" stop-color="#e0f2fe"/>
-      </linearGradient>
-      <radialGradient id="sun" cx="50%" cy="50%" r="50%">
-        <stop offset="0" stop-color="#fef9c3"/><stop offset="1" stop-color="#fde68a"/>
-      </radialGradient>
-      <linearGradient id="hillFar" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#86efac"/><stop offset="1" stop-color="#4ade80"/>
-      </linearGradient>
-      <linearGradient id="hillNear" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#4ade80"/><stop offset="1" stop-color="#22c55e"/>
-      </linearGradient>
-      <linearGradient id="soil" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#a16207"/><stop offset="1" stop-color="#854d0e"/>
-      </linearGradient>
-      <linearGradient id="tab" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#16a34a"/><stop offset="1" stop-color="#15803d"/>
-      </linearGradient>
-    </defs>
-    <rect width="1200" height="400" fill="url(#sky)"/>
-    <circle cx="1010" cy="90" r="58" fill="url(#sun)"/>
-    <circle cx="1010" cy="90" r="78" fill="#fde68a" opacity=".25"/>
-    <g fill="#ffffff" opacity=".85">
-      <ellipse cx="250" cy="80" rx="70" ry="26"/><ellipse cx="300" cy="70" rx="50" ry="22"/><ellipse cx="200" cy="72" rx="45" ry="20"/>
-      <ellipse cx="640" cy="55" rx="60" ry="22"/><ellipse cx="690" cy="48" rx="42" ry="18"/>
-    </g>
-    <path d="M0 250 Q300 180 600 240 T1200 220 V400 H0 Z" fill="url(#hillFar)"/>
-    <path d="M0 300 Q350 240 700 290 T1200 280 V400 H0 Z" fill="url(#hillNear)"/>
-    <path d="M0 340 Q600 320 1200 345 V400 H0 Z" fill="url(#soil)"/>
-    <g stroke="#713f12" stroke-width="2" opacity=".35" fill="none">
-      <path d="M60 360 H1140"/><path d="M40 380 H1160"/>
-    </g>
-    <g>
-      <path d="M150 345 C150 320 150 310 150 300" stroke="#15803d" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <path d="M150 312 C132 300 124 308 126 320 C138 322 148 318 150 312Z" fill="#22c55e"/>
-      <path d="M150 308 C168 296 176 304 174 316 C162 318 152 314 150 308Z" fill="#4ade80"/>
-      <circle cx="150" cy="296" r="6" fill="#fde68a"/>
-    </g>
-    <g>
-      <path d="M330 345 C330 318 330 306 330 296" stroke="#15803d" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <path d="M330 310 C310 298 302 308 305 320 C318 322 328 316 330 310Z" fill="#22c55e"/>
-      <path d="M330 304 C350 292 358 302 355 314 C342 316 332 310 330 304Z" fill="#4ade80"/>
-      <circle cx="318" cy="326" r="13" fill="#ef4444"/><circle cx="342" cy="330" r="11" fill="#dc2626"/>
-      <circle cx="316" cy="322" r="3" fill="#fecaca" opacity=".7"/>
-    </g>
-    <g>
-      <ellipse cx="520" cy="332" rx="34" ry="13" fill="#16a34a" transform="rotate(-12 520 332)"/>
-      <ellipse cx="520" cy="332" rx="34" ry="13" fill="#22c55e" transform="rotate(-12 520 332)" opacity=".5"/>
-      <path d="M492 326 q-8 -6 -14 -2" stroke="#15803d" stroke-width="3" fill="none" stroke-linecap="round"/>
-      <circle cx="506" cy="326" r="2.5" fill="#bbf7d0"/><circle cx="520" cy="330" r="2.5" fill="#bbf7d0"/><circle cx="534" cy="334" r="2.5" fill="#bbf7d0"/>
-    </g>
-    <g>
-      <path d="M700 345 C700 322 700 312 700 302" stroke="#15803d" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <path d="M700 314 C682 302 674 310 676 322 C688 324 698 320 700 314Z" fill="#22c55e"/>
-      <path d="M700 310 C718 298 726 306 724 318 C712 320 702 316 700 310Z" fill="#4ade80"/>
-      <circle cx="700" cy="298" r="7" fill="#fb923c"/><circle cx="700" cy="298" r="3" fill="#fde68a"/>
-    </g>
-    <g transform="translate(880 250)">
-      <rect x="-6" y="-6" width="132" height="100" rx="12" fill="#14532d"/>
-      <rect x="0" y="0" width="120" height="88" rx="8" fill="url(#tab)"/>
-      <path d="M60 70 C60 52 60 44 60 36" stroke="#dcfce7" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <path d="M60 46 C46 38 40 44 42 52 C52 54 58 50 60 46Z" fill="#bbf7d0"/>
-      <path d="M60 42 C74 34 80 40 78 48 C68 50 62 46 60 42Z" fill="#dcfce7"/>
-      <circle cx="60" cy="32" r="5" fill="#fde68a"/>
-      <rect x="14" y="14" width="40" height="6" rx="3" fill="#dcfce7" opacity=".8"/>
-      <rect x="14" y="26" width="28" height="6" rx="3" fill="#dcfce7" opacity=".5"/>
-    </g>
-    <g fill="#f472b6" opacity=".9">
-      <circle cx="1080" cy="320" r="5"/><circle cx="1092" cy="314" r="5"/><circle cx="1100" cy="322" r="5"/><circle cx="1090" cy="328" r="5"/><circle cx="1090" cy="321" r="3" fill="#fde68a"/>
-    </g>
-  </svg>
-  <div class="hero-badge">🌿 12 калькуляторов · бесплатно</div>
-  <div class="hero-tag">Планируй урожай онлайн</div>
-</div>
+<!-- КАРТИНКА ВМЕСТО РИСУНКА -->
+<img src="hero-dacha.jpg" alt="Дача-Счёт" class="hero-img">
 
-<header>
-<h1>🌿 Дача-Счёт</h1>
+<header style="text-align:center;">
+<h1 style="color:#2E7D32; font-size:2.5rem;">🌿 Дача-Счёт</h1>
 <p class="subtitle">Умные помощники для вашего урожая. Без регистрации и смс.</p>
 </header>
 
-<div class="filters">
-<button onclick="filterCards('all')" class="filter-btn active" id="btn-all">Все</button>
-<button onclick="filterCards('seeds')" class="filter-btn" id="btn-seeds">🌱 Семена</button>
-<button onclick="filterCards('fertilizer')" class="filter-btn" id="btn-fertilizer">🧪 Удобрения</button>
-<button onclick="filterCards('care')" class="filter-btn" id="btn-care">💧 Уход</button>
-<button onclick="filterCards('layout')" class="filter-btn" id="btn-layout">📐 Грядка</button>
-<button onclick="filterCards('plan')" class="filter-btn" id="btn-plan">🏡 Планирование</button>
-<button onclick="filterCards('harvest')" class="filter-btn" id="btn-harvest">🧺 Урожай</button>
-<button onclick="filterCards('calendar')" class="filter-btn" id="btn-calendar">📅 Календарь</button>
-<button onclick="filterCards('compatibility')" class="filter-btn" id="btn-compatibility">🤝 Совместимость</button>
+<!-- ФИЛЬТРЫ -->
+<div class="filter-tags">
+<span class="tag active">Все</span>
+<span class="tag">🌱 Семена</span>
+<span class="tag">🧪 Удобрения</span>
+<span class="tag">💧 Уход</span>
+<span class="tag">📐 Грядка</span>
+<span class="tag">📅 Планирование</span>
+<span class="tag">🧺 Урожай</span>
+<span class="tag">🗓️ Календарь</span>
+<span class="tag">🤝 Совместимость</span>
 </div>
 
-<div class="ad-banner">[ Место для рекламы: Баннер 728x90 или блок РСЯ ]</div>
+<!-- ПАРТНЁРКА ТВОЙ ДОМ ВМЕСТО ЗАГЛУШКИ -->
+<div class="ad-banner">
+<h3>🏡 Всё для дачи и сада в одном месте</h3>
+<p>Инструменты, удобрения, семена и декор со скидкой до 40% в магазине «Твой Дом».</p>
+<a href="https://ru.trackerpro.org/6adcc9d6a4934?erid=2SDnjek8Bjn" target="_blank" rel="nofollow noopener" class="ad-btn">Перейти в магазин Твой Дом →</a>
+<span class="ad-mark">Реклама. АО "КРОКУС", ИНН 7728115183. Сайт https://tvoydom.ru<br>erid: 2SDnjek8Bjn</span>
+</div>
 
+<!-- СЕТКА КАЛЬКУЛЯТОРОВ С КАРТИНКАМИ -->
 <div class="grid-container">
-<a href="seeds-calc.html" class="card fade-in" data-category="seeds"><div><div class="card-title">🌱 Калькулятор семян</div><div class="card-desc">Сколько граммов семян нужно на вашу грядку? Норма высева для 7 культур.</div></div><span class="btn-link">Открыть →</span></a>
-<a href="fertilizer-calc.html" class="card fade-in" data-category="fertilizer"><div><div class="card-title">🧪 Норма удобрений</div><div class="card-desc">Мочевина, суперфосфат, зола, навоз: точная норма под площадь или куст.</div></div><span class="btn-link">Открыть →</span></a>
-<a href="water-calc.html" class="card fade-in" data-category="care"><div><div class="card-title">💧 Калькулятор полива</div><div class="card-desc">Литры за полив и за неделю с учётом почвы и способа полива.</div></div><span class="btn-link">Открыть →</span></a>
-<a href="compost-calc.html" class="card fade-in" data-category="care"><div><div class="card-title">♻️ Калькулятор компоста</div><div class="card-desc">Баланс зелёного и коричневого, выход компоста и сроки созревания.</div></div><span class="btn-link">Открыть →</span></a>
-<a href="raised-bed-calc.html" class="card fade-in" data-category="layout"><div><div class="card-title">📦 Высокая грядка</div><div class="card-desc">Сколько грунта и дренажа купить, чтобы заполнить короб доверху.</div></div><span class="btn-link">Открыть →</span></a>
-<a href="spacing-calc.html" class="card fade-in" data-category="layout"><div><div class="card-title">📐 Схема посадки</div><div class="card-desc">Сколько кустов влезет на грядку и какой шаг выбрать без загущения.</div></div><span class="btn-link">Открыть →</span></a>
-<a href="mulch-calc.html" class="card fade-in" data-category="layout"><div><div class="card-title">🍂 Калькулятор мульчи</div><div class="card-desc">Кубы, мешки и вес мульчи под площадь и толщину слоя + ограничения.</div></div><span class="btn-link">Открыть →</span></a>
-<a href="greenhouse-calc.html" class="card fade-in" data-category="plan"><div><div class="card-title">🏡 Калькулятор теплицы</div><div class="card-desc">Площадь, поликарбонат, форточки и мощность обогрева по размерам.</div></div><span class="btn-link">Открыть →</span></a>
-<a href="beds-planner.html" class="card fade-in" data-category="plan"><div><div class="card-title">🗺 Планировщик грядок</div><div class="card-desc">Что росло в прошлом году — что сажать теперь. Севооборот за минуту.</div></div><span class="btn-link">Открыть →</span></a>
-<a href="harvest-calc.html" class="card fade-in" data-category="harvest"><div><div class="card-title">🧺 Калькулятор урожая</div><div class="card-desc">Прогноз килограммов с вашей площади по уровню ухода.</div></div><span class="btn-link">Открыть →</span></a>
-<a href="calendar.html" class="card fade-in" data-category="calendar"><div><div class="card-title">📅 Лунный календарь 2027</div><div class="card-desc">Зелёные дни для посадки, жёлтые для ухода, красные для отдыха.</div></div><span class="btn-link">Открыть →</span></a>
-<a href="compatibility.html" class="card fade-in" data-category="compatibility"><div><div class="card-title">🤝 Совместимость культур</div><div class="card-desc">Кто с кем дружит на грядке, а кто воюет. 15 культур с советами.</div></div><span class="btn-link">Открыть →</span></a>
+<div class="card fade-in-up">
+<img src="seeds-calc.jpg" alt="Семена">
+<div class="card-title">Калькулятор семян</div>
+<div class="card-desc">Сколько граммов семян нужно на вашу грядку? Норма высева для 7 культур.</div>
+<a href="seeds-calc.html" class="btn-link">Открыть →</a>
 </div>
 
-<div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid var(--color-accent);text-align:center;padding:30px;margin-bottom:30px">
-<h3 style="color:var(--color-accent);margin-bottom:15px">📚 Читайте блог дачника</h3>
-<p style="color:#666;margin-bottom:20px">18 практических статей: рассада, теплицы, клубника, сидераты, полив, мульча и другое.</p>
-<a href="blog/index.html" class="btn-link" style="padding:12px 30px;font-size:1.1rem">Перейти к статьям →</a>
+<div class="card fade-in-up">
+<img src="fertilizer-calc.jpg" alt="Удобрения">
+<div class="card-title">Норма удобрений</div>
+<div class="card-desc">Мочевина, суперфосфат, зола, навоз: точная норма под площадь или куст.</div>
+<a href="fertilizer-calc.html" class="btn-link">Открыть →</a>
 </div>
 
-<div class="ad-banner">[ Место для рекламы: Партнёрские ссылки Ozon/WB (семена, инвентарь) ]</div>
-
-<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт · Все расчёты справочные.</footer>
-
+<div class="card fade-in-up">
+<img src="watering-calc.jpg" alt="Полив">
+<div class="card-title">Калькулятор полива</div>
+<div class="card-desc">Литры за полив и за неделю с учетом почвы и способа полива.</div>
+<a href="water-calc.html" class="btn-link">Открыть →</a>
 </div>
-<script>
-function filterCards(category){
-const cards=document.querySelectorAll('.card');
-const buttons=document.querySelectorAll('.filter-btn');
-buttons.forEach(b=>{b.classList.remove('active');if(b.id==='btn-'+category)b.classList.add('active');});
-cards.forEach(c=>{
-if(category==='all'||c.dataset.category===category){c.style.display='flex';c.style.animation='none';c.offsetHeight;c.style.animation=null;}
-else{c.style.display='none';}
-});
-}
-</script>
-<!-- АВТОМАТИЧЕСКАЯ КАРТИНКА + ПАРТНЁРКА ТВОЙ ДОМ (ГЛАВНАЯ + КАЛЬКУЛЯТОРЫ) -->
-<script>
-(function() {
-    const pageName = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
-    const imgMap = {
-        'index': 'hero-dacha.jpg',
-        'seeds-calc': 'seeds-calc.jpg',
-        'fertilizer-calc': 'fertilizer-calc.jpg',
-        'water-calc': 'watering-calc.jpg',
-        'beds-planner': 'bed-planner.jpg',
-        'raised-bed-calc': 'bed-planner.jpg',
-        'spacing-calc': 'bed-planner.jpg',
-        'harvest-calc': 'harvest-calc.jpg',
-        'calendar': 'calendar-dacha.jpg',
-        'compatibility': 'compatibility.jpg',
-        'greenhouse-calc': 'greenhouse-calc.jpg',
-        'compost-calc': 'compost-calc.jpg',
-        'mulch-calc': 'mulching.jpg'
-    };
-    
-    const container = document.querySelector('.container');
-    if (container && !container.querySelector('img')) {
-        const imgSrc = imgMap[pageName] || 'hero-dacha.jpg';
-        const img = document.createElement('img');
-        img.src = imgSrc;
-        img.alt = 'Дача-Счёт';
-        img.style.cssText = 'width:100%; height:300px; object-fit:cover; border-radius:16px; margin-bottom:30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);';
-        container.insertBefore(img, container.children[1]);
-    }
 
-    const partnerHTML = `
-    <div style="text-align:center; margin:40px auto; padding:25px; background:rgba(76,175,80,0.08); border-radius:12px; border:1px dashed #4CAF50; max-width:650px;">
-        <div style="font-weight:bold; color:#2E7D32; margin-bottom:10px; font-size:1.3rem;">🏡 Всё для дачи и сада в одном месте</div>
-        <p style="margin-bottom:15px; color:#555;">Инструменты, удобрения, семена и декор со скидкой до 40% в магазине «Твой Дом».</p>
-        <a href="https://ru.trackerpro.org/6adcc9d6a4934?erid=2SDnjek8Bjn" target="_blank" rel="nofollow noopener" style="display:inline-block; background:#4CAF50; color:white; text-decoration:none; padding:14px 32px; border-radius:8px; font-weight:bold; font-size:1.05rem; transition:0.3s; box-shadow:0 4px 12px rgba(76,175,80,0.3);">Перейти в магазин Твой Дом →</a>
-        <div style="font-size:0.7rem; color:#888; margin-top:12px; line-height:1.4;">Реклама. АО "КРОКУС", ИНН 7728115183. Сайт https://tvoydom.ru<br>erid: 2SDnjek8Bjn</div>
-    </div>`;
-    
-    const footer = document.querySelector('footer');
-    if (footer) {
-        footer.insertAdjacentHTML('beforebegin', partnerHTML);
-    } else {
-        document.body.insertAdjacentHTML('beforeend', partnerHTML);
-    }
-})();
-</script></body>
+<div class="card fade-in-up">
+<img src="compost-calc.jpg" alt="Компост">
+<div class="card-title">Калькулятор компоста</div>
+<div class="card-desc">Баланс зелёного и коричневого, выход компоста и сроки созревания.</div>
+<a href="compost-calc.html" class="btn-link">Открыть →</a>
+</div>
+
+<div class="card fade-in-up">
+<img src="bed-planner.jpg" alt="Высокая грядка">
+<div class="card-title">Высокая грядка</div>
+<div class="card-desc">Сколько грунта и дренажа купить, чтобы заполнить короб доверху.</div>
+<a href="raised-bed-calc.html" class="btn-link">Открыть →</a>
+</div>
+
+<div class="card fade-in-up">
+<img src="bed-planner.jpg" alt="Схема посадки">
+<div class="card-title">Схема посадки</div>
+<div class="card-desc">Сколько кустов влезет на грядку и какой шаг выбрать без загущения.</div>
+<a href="spacing-calc.html" class="btn-link">Открыть →</a>
+</div>
+
+<div class="card fade-in-up">
+<img src="mulching.jpg" alt="Мульча">
+<div class="card-title">Калькулятор мульчи</div>
+<div class="card-desc">Кубы, мешки и вес мульчи под площадь и толщину слоя + ограничения.</div>
+<a href="mulch-calc.html" class="btn-link">Открыть →</a>
+</div>
+
+<div class="card fade-in-up">
+<img src="greenhouse-calc.jpg" alt="Теплица">
+<div class="card-title">Калькулятор теплицы</div>
+<div class="card-desc">Площадь, поликарбонат, форточки и мощность обогрева по размерам.</div>
+<a href="greenhouse-calc.html" class="btn-link">Открыть →</a>
+</div>
+</div>
+
+<!-- БЛОГ -->
+<div style="text-align:center; margin:50px 0; padding:30px; background:rgba(76,175,80,0.05); border-radius:16px;">
+<h3 style="color:#2E7D32; margin-top:0;">📚 Читайте блог дачника</h3>
+<p style="margin-bottom:20px;">18 практических статей: рассада, теплицы, клубника, сидераты, полив, мульча и другое.</p>
+<a href="blog/index.html" class="btn-link" style="display:inline-block; background:#4CAF50; padding:12px 30px;">Перейти к статьям →</a>
+</div>
+
+<footer style="text-align:center; margin-top:40px; color:#888;">© 2026 Дача-Счёт · Все расчёты справочные.</footer>
+</div>
+</body>
 </html>
