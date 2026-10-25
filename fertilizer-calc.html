@@ -6,87 +6,24 @@
 <title>Калькулятор удобрений — Дача-Счёт</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "z26px2msaf");
-</script>
-<style>
-.result-box { background: rgba(255,255,255,0.9); border-left: 5px solid #4CAF50; padding: 25px; border-radius: 12px; margin-top: 30px; display: none; }
-.fert-value { font-size: 2.5rem; font-weight: 800; color: #2E7D32; text-align: center; margin: 10px 0; }
-.ad-banner { background: rgba(76,175,80,0.08); border: 1px dashed #4CAF50; border-radius: 12px; padding: 25px; text-align: center; margin: 30px 0; }
-.ad-banner h3 { color: #2E7D32; margin-top: 0; font-size: 1.3rem; }
-.ad-btn { display: inline-block; background: #4CAF50; color: white; text-decoration: none; padding: 12px 28px; border-radius: 8px; font-weight: bold; transition: 0.3s; margin-top: 10px; }
-.ad-btn:hover { background: #388E3C; transform: scale(1.05); }
-.ad-mark { font-size: 0.7rem; color: #888; margin-top: 10px; display: block; line-height: 1.4; }
-.input-styled { width: 100%; padding: 12px; border: 1px solid #C8E6C9; border-radius: 8px; background: white; font-size: 1rem; margin-bottom: 20px; }
-</style>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "z26px2msaf");</script>
+<style>.result-box{background:rgba(255,255,255,0.9);border-left:5px solid #4CAF50;padding:25px;border-radius:12px;margin-top:30px;display:none}.fert-value{font-size:2.5rem;font-weight:800;color:#2E7D32;text-align:center;margin:10px 0}.ad-banner{background:rgba(76,175,80,0.08);border:1px dashed #4CAF50;border-radius:12px;padding:25px;text-align:center;margin:30px 0}.ad-banner h3{color:#2E7D32;margin-top:0;font-size:1.3rem}.ad-btn{display:inline-block;background:#4CAF50;color:white;text-decoration:none;padding:12px 28px;border-radius:8px;font-weight:bold;transition:0.3s;margin-top:10px}.ad-btn:hover{background:#388E3C;transform:scale(1.05)}.ad-mark{font-size:0.7rem;color:#888;margin-top:10px;display:block;line-height:1.4}.input-styled{width:100%;padding:12px;border:1px solid #C8E6C9;border-radius:8px;background:white;font-size:1rem;margin-bottom:20px}</style>
 </head>
 <body>
 <div class="container">
 <header style="margin-bottom:20px"><a href="index.html" style="color:#4CAF50;font-weight:bold;text-decoration:none">← На главную</a></header>
-
-<!-- КАРТИНКА СВЕРХУ -->
-<img src="fertilizer-calc.jpg" alt="Калькулятор удобрений" style="width:100%; height:250px; object-fit:cover; border-radius:16px; margin-bottom:30px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
-
-<h1 style="color:#2E7D32;">🌿 Калькулятор удобрений</h1>
+<img src="fertilizer-calc.jpg" alt="Удобрения" style="width:100%;height:250px;object-fit:cover;border-radius:16px;margin-bottom:30px;box-shadow:0 8px 20px rgba(0,0,0,0.1)">
+<h1 style="color:#2E7D32">🌿 Калькулятор удобрений</h1>
 <p class="subtitle">Рассчитай точную норму подкормки для своего участка.</p>
-
-<div class="card" style="max-width:600px; margin:0 auto;">
-    <div class="form-group">
-        <label style="display:block; margin-bottom:8px; font-weight:600; color:#2E7D32;">Площадь участка (соток)</label>
-        <input type="number" id="area" placeholder="Например: 6" class="input-styled">
-    </div>
-    
-    <div class="form-group">
-        <label style="display:block; margin-bottom:8px; font-weight:600; color:#2E7D32;">Тип культуры</label>
-        <select id="crop" class="input-styled">
-            <option value="potato">Картофель</option>
-            <option value="tomato">Томаты</option>
-            <option value="cucumber">Огурцы</option>
-            <option value="berry">Ягодные кустарники</option>
-            <option value="lawn">Газон</option>
-        </select>
-    </div>
-
-    <button onclick="calculateFert()" style="width:100%; padding:14px; background:#4CAF50; color:white; border:none; border-radius:8px; font-weight:bold; font-size:1.1rem; cursor:pointer;">Рассчитать норму</button>
-
-    <!-- РЕЗУЛЬТАТ -->
-    <div id="resultArea" class="result-box">
-        <div class="fert-value" id="fertValue">0 кг</div>
-        <div style="text-align:center; color:#555; margin-bottom:15px;" id="fertDesc">Рекомендуемая доза удобрения</div>
-    </div>
-
-    <!-- ПАРТНЁРКА ТВОЙ ДОМ ВМЕСТО ЗАГЛУШКИ -->
-    <div class="ad-banner">
-        <h3>🏡 Всё для дачи и сада в одном месте</h3>
-        <p style="margin-bottom:10px; color:#555;">Инструменты, удобрения, семена и декор со скидкой до 40%.</p>
-        <a href="https://ru.trackerpro.org/6adcc9d6a4934?erid=2SDnjek8Bjn" target="_blank" rel="nofollow noopener" class="ad-btn">Перейти в магазин Твой Дом →</a>
-        <span class="ad-mark">Реклама. АО "КРОКУС", ИНН 7728115183. Сайт https://tvoydom.ru<br>erid: 2SDnjek8Bjn</span>
-    </div>
+<div class="card" style="max-width:600px;margin:0 auto">
+<div class="form-group"><label style="display:block;margin-bottom:8px;font-weight:600;color:#2E7D32">Площадь (соток)</label><input type="number" id="area" placeholder="6" class="input-styled"></div>
+<div class="form-group"><label style="display:block;margin-bottom:8px;font-weight:600;color:#2E7D32">Культура</label><select id="crop" class="input-styled"><option value="potato">Картофель</option><option value="tomato">Томаты</option><option value="cucumber">Огурцы</option><option value="berry">Ягоды</option><option value="lawn">Газон</option></select></div>
+<button onclick="calc()" style="width:100%;padding:14px;background:#4CAF50;color:white;border:none;border-radius:8px;font-weight:bold;font-size:1.1rem;cursor:pointer">Рассчитать норму</button>
+<div id="res" class="result-box"><div class="fert-value" id="val">0 кг</div><div style="text-align:center;color:#555" id="desc">Рекомендуемая доза</div></div>
+<div class="ad-banner"><h3>🏡 Всё для дачи и сада в одном месте</h3><p style="margin-bottom:10px;color:#555">Инструменты, удобрения, семена и декор со скидкой до 40%.</p><a href="https://ru.trackerpro.org/6adcc9d6a4934?erid=2SDnjek8Bjn" target="_blank" rel="nofollow noopener" class="ad-btn">Перейти в магазин Твой Дом →</a><span class="ad-mark">Реклама. АО "КРОКУС", ИНН 7728115183. Сайт https://tvoydom.ru<br>erid: 2SDnjek8Bjn</span></div>
 </div>
-
-<footer style="text-align:center; margin-top:40px; color:#888;">© 2026 Дача-Счёт · Все расчёты справочные.</footer>
+<footer style="text-align:center;margin-top:40px;color:#888">© 2026 Дача-Счёт</footer>
 </div>
-
-<script>
-function calculateFert() {
-    const area = parseFloat(document.getElementById('area').value);
-    const crop = document.getElementById('crop').value;
-    
-    if (!area || area <= 0) return alert("Пожалуйста, введите корректную площадь");
-    
-    // Нормы расхода (кг на сотку)
-    const norms = { potato: 1.5, tomato: 1.2, cucumber: 1.0, berry: 2.0, lawn: 0.8 };
-    const totalKg = Math.round(area * norms[crop] * 10) / 10;
-    const cropNames = { potato: "картофеля", tomato: "томатов", cucumber: "огурцов", berry: "ягодных кустарников", lawn: "газона" };
-    
-    document.getElementById('resultArea').style.display = 'block';
-    document.getElementById('fertValue').innerText = totalKg + " кг";
-    document.getElementById('fertDesc').innerText = `Оптимальная доза для ${cropNames[crop]} на ${area} сот.`;
-}
-</script>
+<script>function calc(){const a=parseFloat(document.getElementById('area').value),c=document.getElementById('crop').value;if(!a||a<=0)return alert('Введите площадь');const n={potato:1.5,tomato:1.2,cucumber:1.0,berry:2.0,lawn:0.8};const kg=Math.round(a*n[c]*10)/10;document.getElementById('res').style.display='block';document.getElementById('val').innerText=kg+' кг';document.getElementById('desc').innerText='Для '+c+' на '+a+' сот.'}</script>
 </body>
 </html>
