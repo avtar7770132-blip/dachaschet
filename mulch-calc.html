@@ -3,121 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Калькулятор мульчи: сколько мешков купить — Дача-Счёт</title>
+<title>Калькулятор мульчи — Дача-Счёт</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
-<style>.cf{max-width:650px;margin:0 auto}.cf label{display:block;margin-bottom:5px;font-weight:bold}.cf select,.cf input{width:100%;padding:12px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;background:#fff;margin-bottom:15px;box-sizing:border-box}.cf .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.rb{background:#fff;border:2px solid var(--color-accent);border-radius:12px;padding:25px;margin:25px auto;max-width:650px}.rb h3{color:var(--color-accent);margin-top:0}.rb ul{line-height:2;font-size:1.05rem}.ti{background:#f0fdf4;padding:10px;border-radius:6px;margin-top:15px;font-size:.9rem;color:#14532d}.wn{background:#fee2e2;border-left:4px solid #ef4444;padding:10px;border-radius:6px;margin-top:15px;font-size:.9rem;color:#7f1d1d}</style>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "z26px2msaf");</script>
+<style>.result-box{background:rgba(255,255,255,0.9);border-left:5px solid #4CAF50;padding:25px;border-radius:12px;margin-top:30px;display:none}.mulch-value{font-size:2.5rem;font-weight:800;color:#2E7D32;text-align:center;margin:10px 0}.ad-banner{background:rgba(76,175,80,0.08);border:1px dashed #4CAF50;border-radius:12px;padding:25px;text-align:center;margin:30px 0}.ad-banner h3{color:#2E7D32;margin-top:0;font-size:1.3rem}.ad-btn{display:inline-block;background:#4CAF50;color:white;text-decoration:none;padding:12px 28px;border-radius:8px;font-weight:bold;transition:0.3s;margin-top:10px}.ad-btn:hover{background:#388E3C;transform:scale(1.05)}.ad-mark{font-size:0.7rem;color:#888;margin-top:10px;display:block;line-height:1.4}.input-styled{width:100%;padding:12px;border:1px solid #C8E6C9;border-radius:8px;background:white;font-size:1rem;margin-bottom:20px}</style>
 </head>
-<!-- MICROSOFT CLARITY НАЧАЛО -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "z11gfeuel9");
-</script>
-<!-- MICROSOFT CLARITY КОНЕЦ --><body>
+<body>
 <div class="container">
-<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
-<h1>🍂 Калькулятор мульчи</h1>
-<p class="subtitle">Сколько кубов, мешков и килограммов мульчи нужно на вашу площадь.</p>
-<div class="card cf">
-<div class="row">
-<div><label for="muA">Площадь, м²</label><input type="number" id="muA" value="10" min="1" step="0.5"></div>
-<div><label for="muT">Толщина слоя, см</label><input type="number" id="muT" value="5" min="2" step="1"></div>
+<header style="margin-bottom:20px"><a href="index.html" style="color:#4CAF50;font-weight:bold;text-decoration:none">← На главную</a></header>
+<img src="mulching.jpg" alt="Мульча" style="width:100%;height:250px;object-fit:cover;border-radius:16px;margin-bottom:30px;box-shadow:0 8px 20px rgba(0,0,0,0.1)">
+<h1 style="color:#2E7D32">🍂 Калькулятор мульчи</h1>
+<p class="subtitle">Кубы, мешки и вес мульчи под площадь и толщину слоя.</p>
+<div class="card" style="max-width:600px;margin:0 auto">
+<div class="form-group"><label style="display:block;margin-bottom:8px;font-weight:600;color:#2E7D32">Площадь (м²)</label><input type="number" id="area" placeholder="15" class="input-styled"></div>
+<div class="form-group"><label style="display:block;margin-bottom:8px;font-weight:600;color:#2E7D32">Толщина слоя (см)</label><input type="number" id="thick" placeholder="5" class="input-styled"></div>
+<button onclick="calc()" style="width:100%;padding:14px;background:#4CAF50;color:white;border:none;border-radius:8px;font-weight:bold;font-size:1.1rem;cursor:pointer">Рассчитать объём</button>
+<div id="res" class="result-box"><div class="mulch-value" id="val">0 м³</div><div style="text-align:center;color:#555" id="desc">≈ 0 мешков (по 50л)</div></div>
+<div class="ad-banner"><h3>🏡 Всё для дачи и сада в одном месте</h3><p style="margin-bottom:10px;color:#555">Инструменты, удобрения, семена и декор со скидкой до 40%.</p><a href="https://ru.trackerpro.org/6adcc9d6a4934?erid=2SDnjek8Bjn" target="_blank" rel="nofollow noopener" class="ad-btn">Перейти в магазин Твой Дом →</a><span class="ad-mark">Реклама. АО "КРОКУС", ИНН 7728115183. Сайт https://tvoydom.ru<br>erid: 2SDnjek8Bjn</span></div>
 </div>
-<label for="muType">Тип мульчи</label>
-<select id="muType">
-<option value="350|0|Кора хвойная">Кора хвойная (закисляет)</option>
-<option value="300|0|Щепа декоративная">Щепа декоративная</option>
-<option value="250|0|Опилки (перепревшие)">Опилки перепревшие</option>
-<option value="100|0.4|Солома">Солома (усаживается)</option>
-<option value="200|0.5|Скошенная трава">Скошенная трава (усаживается)</option>
-<option value="80|0.3|Листва">Опавшая листва (усаживается)</option>
-<option value="1600|0|Гравий / камень">Гравий / камень (неорганика)</option>
-</select>
-<button onclick="calcMulch()" class="btn-link" style="width:100%;border:none;cursor:pointer;font-size:1.1rem;padding:14px">Рассчитать мульчу</button>
+<footer style="text-align:center;margin-top:40px;color:#888">© 2026 Дача-Счёт</footer>
 </div>
-<div id="resMU"></div>
-<div class="ad-banner" style="max-width:650px;margin:30px auto">[ Реклама: Мешки коры, щепа, агроволокно ]</div>
-<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
-</div>
-<script>
-function calcMulch(){
-const A=parseFloat(document.getElementById('muA').value);
-const T=parseFloat(document.getElementById('muT').value);
-const parts=document.getElementById('muType').value.split('|');
-const dens=parseFloat(parts[0]);
-const shrink=parseFloat(parts[1]);
-const name=parts[2];
-if(!A||!T)return alert('Заполните площадь и толщину');
-const vol=A*T/100;
-const buyVol=shrink>0?vol/(1-shrink):vol;
-const kg=Math.round(buyVol*dens);
-const m50=Math.ceil(buyVol/0.05);
-const m70=Math.ceil(buyVol/0.07);
-const kgT=kg>=1000?(kg/1000).toFixed(2)+' т':kg+' кг';
-let warn='';
-if(name==='Солома')warn='<div class="wn">⚠️ Солома под клубникой и земляникой привлекает мышей — держите ловушки или замените на агроволокно.</div>';
-if(name==='Кора хвойная')warn='<div class="wn">⚠️ Кора закисляет почву: не мульчируйте ею капусту, свёклу и картофель — они любят нейтральную землю. Зато идеальна под голубику, клюкву, рододендроны и клубнику.</div>';
-if(name==='Скошенная трава'||name==='Опавшая листва')warn='<div class="wn">⚠️ Свежая трава и листва с семенами сорняков засорят грядку. Сушите слой 2–3 дня перед укладкой или берите только без семян.</div>';
-if(name==='Опилки (перепревшие)')warn='<div class="wn">⚠️ Свежие опилки вытягивают азот. Используйте только перепревшие (отлежавшие год) или подсыпайте мочевину: 20 г на ведро.</div>';
-document.getElementById('resMU').innerHTML='<div class="rb fade-in"><h3>Мульча: '+name+'</h3><ul><li>📐 Площадь: <strong>'+A+' м²</strong> · слой: <strong>'+T+' см</strong></li><li>📦 Объём на выходе: <strong>'+vol.toFixed(2)+' м³</strong>'+(shrink>0?' (после усадки)':'')+'</li><li>🛒 Покупать с запасом на усадку: <strong>'+buyVol.toFixed(2)+' м³</strong></li><li>🧺 Мешков 50 л: <strong>'+m50+' шт</strong> · 70 л: <strong>'+m70+' шт</strong></li><li>⚖️ Вес: <strong>~'+kgT+'</strong></li></ul>'+(warn||'<div class="ti">✅ Этот тип мульчи универсален и не имеет критичных ограничений по культурам.</div>')+'<div class="ti">💡 Мульчируйте по влажной земле после полива, отступая 3–5 см от стебля, чтобы он не подпревал. Обновляйте слой раз в сезон.</div></div>';
-document.getElementById('resMU').scrollIntoView({behavior:'smooth'});
-}
-</script>
-<!-- ИСПРАВЛЕННЫЙ СКРИПТ ДЛЯ КАЛЬКУЛЯТОРОВ -->
-<script>
-(function() {
-    const pageName = window.location.pathname.split('/').pop().replace('.html', '');
-    const imgMap = {
-        'seeds-calc': 'seeds-calc.jpg',
-        'fertilizer-calc': 'fertilizer-calc.jpg',
-        'water-calc': 'watering-calc.jpg',
-        'compost-calc': 'compost-calc.jpg',
-        'raised-bed-calc': 'bed-planner.jpg',
-        'spacing-calc': 'bed-planner.jpg',
-        'mulch-calc': 'mulching.jpg',
-        'greenhouse-calc': 'greenhouse-calc.jpg',
-        'harvest-calc': 'harvest-calc.jpg',
-        'calendar': 'calendar-dacha.jpg',
-        'compatibility': 'compatibility.jpg',
-        'beds-planner': 'bed-planner.jpg'
-    };
-    
-    const container = document.querySelector('.container');
-    if (container) {
-        // Удаляем старые заглушки или SVG, если есть
-        const existingImgs = container.querySelectorAll('img');
-        existingImgs.forEach(img => {
-            if (img.src.includes('data:image') || img.classList.contains('placeholder')) {
-                img.remove();
-            }
-        });
-        
-        // Добавляем картинку, если её нет
-        if (!container.querySelector('img[src$=".jpg"]')) {
-            const imgSrc = imgMap[pageName] || 'hero-dacha.jpg';
-            const img = document.createElement('img');
-            img.src = imgSrc;
-            img.alt = 'Дача-Счёт';
-            img.style.cssText = 'width:100%; height:250px; object-fit:cover; border-radius:16px; margin-bottom:25px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);';
-            container.insertBefore(img, container.children[1]);
-        }
-    }
-
-    const partnerHTML = `
-    <div style="text-align:center; margin:35px auto; padding:25px; background:rgba(76,175,80,0.08); border-radius:12px; border:1px dashed #4CAF50; max-width:650px;">
-        <div style="font-weight:bold; color:#2E7D32; margin-bottom:10px; font-size:1.2rem;">🏡 Всё для дачи и сада в одном месте</div>
-        <p style="margin-bottom:15px; color:#555;">Инструменты, удобрения, семена и декор со скидкой до 40%.</p>
-        <a href="https://ru.trackerpro.org/6adcc9d6a4934?erid=2SDnjek8Bjn" target="_blank" rel="nofollow noopener" style="display:inline-block; background:#4CAF50; color:white; text-decoration:none; padding:12px 28px; border-radius:8px; font-weight:bold; transition:0.3s;">Перейти в Твой Дом →</a>
-        <div style="font-size:0.7rem; color:#888; margin-top:10px; line-height:1.4;">Реклама. АО "КРОКУС", ИНН 7728115183. Сайт https://tvoydom.ru<br>erid: 2SDnjek8Bjn</div>
-    </div>`;
-    
-    const footer = document.querySelector('footer');
-    if (footer && !footer.previousElementSibling?.classList.contains('ad-banner')) {
-        footer.insertAdjacentHTML('beforebegin', partnerHTML);
-    }
-})();
-</script></body>
+<script>function calc(){const a=parseFloat(document.getElementById('area').value),t=parseFloat(document.getElementById('thick').value)/100;if(!a||!t)return alert('Заполните поля');const vol=Math.round(a*t*100)/100;const bags=Math.ceil(vol/0.05);document.getElementById('res').style.display='block';document.getElementById('val').innerText=vol+' м³';document.getElementById('desc').innerText='≈ '+bags+' мешков (по 50л)'}</script>
+</body>
 </html>
