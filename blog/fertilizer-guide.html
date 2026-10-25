@@ -71,5 +71,35 @@
 </div>
 <!-- КОНЕЦ БЛОКА --><footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem;border-top:1px solid var(--color-border);padding-top:20px">© 2027 Дача-Счёт</footer>
 </div>
-</body>
+<!-- АВТОМАТИЧЕСКАЯ КАРТИНКА + ПАРТНЁРКА ТВОЙ ДОМ ДЛЯ СТАТЕЙ -->
+<script>
+(function() {
+    // 1. Вставляем картинку blog-dacha.jpg в начало контейнера
+    const container = document.querySelector('.container');
+    if (container && !container.querySelector('img')) {
+        const img = document.createElement('img');
+        img.src = '../blog-dacha.jpg'; // Путь из blog/ в корень
+        img.alt = 'Дача-Счёт Блог';
+        img.style.cssText = 'width:100%; height:300px; object-fit:cover; border-radius:16px; margin-bottom:30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);';
+        container.insertBefore(img, container.children[1]);
+    }
+
+    // 2. Создаём блок партнёрки с маркировкой АДО
+    const partnerHTML = `
+    <div style="text-align:center; margin:40px auto; padding:25px; background:rgba(76,175,80,0.08); border-radius:12px; border:1px dashed #4CAF50; max-width:650px;">
+        <div style="font-weight:bold; color:#2E7D32; margin-bottom:10px; font-size:1.3rem;">🏡 Всё для дачи и сада в одном месте</div>
+        <p style="margin-bottom:15px; color:#555;">Инструменты, удобрения, семена и декор со скидкой до 40% в магазине «Твой Дом».</p>
+        <a href="https://ru.trackerpro.org/6adcc9d6a4934?erid=2SDnjek8Bjn" target="_blank" rel="nofollow noopener" style="display:inline-block; background:#4CAF50; color:white; text-decoration:none; padding:14px 32px; border-radius:8px; font-weight:bold; font-size:1.05rem; transition:0.3s; box-shadow:0 4px 12px rgba(76,175,80,0.3);">Перейти в магазин Твой Дом →</a>
+        <div style="font-size:0.7rem; color:#888; margin-top:12px; line-height:1.4;">Реклама. АО "КРОКУС", ИНН 7728115183. Сайт https://tvoydom.ru<br>erid: 2SDnjek8Bjn</div>
+    </div>`;
+    
+    // 3. Вставляем перед футером
+    const footer = document.querySelector('footer');
+    if (footer) {
+        footer.insertAdjacentHTML('beforebegin', partnerHTML);
+    } else {
+        document.body.insertAdjacentHTML('beforeend', partnerHTML);
+    }
+})();
+</script></body>
 </html>
