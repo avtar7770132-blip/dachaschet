@@ -3,130 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Совместимость культур на грядке — Дача-Счёт</title>
+<title>Совместимость растений — Дача-Счёт</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
-<style>
-.crop-selector{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:30px}
-.crop-btn{padding:12px 10px;border:2px solid var(--color-border);background:#fff;border-radius:10px;cursor:pointer;font-weight:bold;font-size:.95rem;text-align:center}
-.crop-btn:hover{border-color:var(--color-accent)}
-.crop-btn.active{background:var(--color-accent);color:#fff;border-color:var(--color-accent)}
-.result-card{background:#fff;border:1px solid var(--color-border);border-radius:12px;padding:25px;margin-bottom:30px}
-.result-title{font-size:1.5rem;color:var(--color-accent);margin-bottom:20px;text-align:center}
-.relations{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.relation-block{padding:15px;border-radius:10px;border:1px solid}
-.relation-block h4{margin:0 0 10px;font-size:1.1rem}
-.relation-block ul{margin:0;padding-left:20px;line-height:1.8}
-.friends{background:#dcfce7;border-color:#22c55e}.friends h4{color:#14532d}
-.enemies{background:#fee2e2;border-color:#ef4444}.enemies h4{color:#7f1d1d}
-.neutral{background:#fef9c3;border-color:#eab308}.neutral h4{color:#713f12}
-.tip-box{background:#f0fdf4;border-left:4px solid var(--color-accent);padding:15px;border-radius:8px;margin-top:20px}
-</style>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "z26px2msaf");</script>
+<style>.result-box{background:rgba(255,255,255,0.9);border-left:5px solid #4CAF50;padding:25px;border-radius:12px;margin-top:30px;display:none}.comp-value{font-size:1.8rem;font-weight:800;color:#2E7D32;text-align:center;margin:10px 0}.ad-banner{background:rgba(76,175,80,0.08);border:1px dashed #4CAF50;border-radius:12px;padding:25px;text-align:center;margin:30px 0}.ad-banner h3{color:#2E7D32;margin-top:0;font-size:1.3rem}.ad-btn{display:inline-block;background:#4CAF50;color:white;text-decoration:none;padding:12px 28px;border-radius:8px;font-weight:bold;transition:0.3s;margin-top:10px}.ad-btn:hover{background:#388E3C;transform:scale(1.05)}.ad-mark{font-size:0.7rem;color:#888;margin-top:10px;display:block;line-height:1.4}.input-styled{width:100%;padding:12px;border:1px solid #C8E6C9;border-radius:8px;background:white;font-size:1rem;margin-bottom:20px}</style>
 </head>
-<!-- MICROSOFT CLARITY НАЧАЛО -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "z11gfeuel9");
-</script>
-<!-- MICROSOFT CLARITY КОНЕЦ --><body>
+<body>
 <div class="container">
-<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
-<h1>🤝 Совместимость культур</h1>
-<p class="subtitle">Выберите растение — узнайте, с кем оно дружит, а с кем враждует.</p>
-<div class="crop-selector" id="cropSelector"></div>
-<div id="resultArea"></div>
-<div class="ad-banner">[ Реклама: Семена проверенных сортов, удобрения ]</div>
-<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+<header style="margin-bottom:20px"><a href="index.html" style="color:#4CAF50;font-weight:bold;text-decoration:none">← На главную</a></header>
+<img src="compatibility.jpg" alt="Совместимость" style="width:100%;height:250px;object-fit:cover;border-radius:16px;margin-bottom:30px;box-shadow:0 8px 20px rgba(0,0,0,0.1)">
+<h1 style="color:#2E7D32">🤝 Совместимость растений</h1>
+<p class="subtitle">Какие культуры дружат на грядке, а какие лучше разнести.</p>
+<div class="card" style="max-width:600px;margin:0 auto">
+<div class="form-group"><label style="display:block;margin-bottom:8px;font-weight:600;color:#2E7D32">Основная культура</label><select id="main" class="input-styled"><option value="tomato">Томаты</option><option value="cucumber">Огурцы</option><option value="carrot">Морковь</option><option value="bean">Фасоль</option></select></div>
+<button onclick="calc()" style="width:100%;padding:14px;background:#4CAF50;color:white;border:none;border-radius:8px;font-weight:bold;font-size:1.1rem;cursor:pointer">Проверить совместимость</button>
+<div id="res" class="result-box"><div class="comp-value" id="val">—</div><div style="text-align:center;color:#555;line-height:1.6" id="desc">Выберите культуру</div></div>
+<div class="ad-banner"><h3>🏡 Всё для дачи и сада в одном месте</h3><p style="margin-bottom:10px;color:#555">Инструменты, удобрения, семена и декор со скидкой до 40%.</p><a href="https://ru.trackerpro.org/6adcc9d6a4934?erid=2SDnjek8Bjn" target="_blank" rel="nofollow noopener" class="ad-btn">Перейти в магазин Твой Дом →</a><span class="ad-mark">Реклама. АО "КРОКУС", ИНН 7728115183. Сайт https://tvoydom.ru<br>erid: 2SDnjek8Bjn</span></div>
 </div>
-<script>
-const CROPS={
-tomato:{name:'🍅 Томат',f:['Базилик','Морковь','Лук','Чеснок','Петрушка','Бархатцы'],e:['Картофель','Фенхель','Укроп (взрослый)','Горох'],n:['Огурец','Свёкла','Салат'],t:'Базилик отпугивает тлю и улучшает вкус плодов.'},
-cucumber:{name:'🥒 Огурец',f:['Укроп','Горох','Фасоль','Салат','Капуста','Чеснок'],e:['Томат','Картофель','Редис','Шалфей'],n:['Морковь','Лук','Кукуруза'],t:'Огурцу нужна влажность, томату — сухость. Не сажайте в одной теплице!'},
-potato:{name:'🥔 Картофель',f:['Фасоль','Горох','Капуста','Кукуруза','Хрен','Бархатцы'],e:['Томат','Огурец','Тыква','Подсолнечник'],n:['Морковь','Свёкла','Лук'],t:'Бархатцы между рядами отпугивают колорадского жука.'},
-carrot:{name:'🥕 Морковь',f:['Лук','Томат','Горох','Редис','Салат','Шалфей'],e:['Укроп','Фенхель','Анис','Сельдерей'],n:['Огурец','Картофель','Свёкла'],t:'Лук и морковь отпугивают мух друг друга.'},
-onion:{name:'🧅 Лук',f:['Морковь','Свёкла','Томат','Огурец','Клубника'],e:['Фасоль','Горох','Шалфей','Спаржа'],n:['Картофель','Капуста','Перец'],t:'Лук рядом с клубникой защищает от серой гнили.'},
-garlic:{name:'🧄 Чеснок',f:['Томат','Огурец','Морковь','Клубника','Роза'],e:['Фасоль','Горох','Капуста'],n:['Картофель','Свёкла','Лук'],t:'Чеснок — природный фунгицид для роз и ягод.'},
-cabbage:{name:'🥬 Капуста',f:['Укроп','Сельдерей','Мята','Лук','Огурец','Фасоль'],e:['Клубника','Томат','Виноград'],n:['Морковь','Свёкла','Картофель'],t:'Укроп привлекает божьих коровок против тли.'},
-pepper:{name:'🌶 Перец',f:['Базилик','Морковь','Лук','Шпинат','Бархатцы'],e:['Фенхель','Фасоль','Свёкла'],n:['Томат','Огурец','Капуста'],t:'Перец и базилик — лучшие соседи в теплице.'},
-eggplant:{name:'🍆 Баклажан',f:['Фасоль','Горох','Шпинат','Тимьян','Бархатцы'],e:['Фенхель','Огурец','Томат (близко)'],n:['Перец','Лук','Морковь'],t:'Минимум 50 см между кустами — не любит тесноту.'},
-pea:{name:'🫛 Горох',f:['Морковь','Огурец','Редис','Кукуруза','Капуста','Картофель'],e:['Лук','Чеснок','Томат','Подсолнечник'],n:['Свёкла','Салат','Шпинат'],t:'Горох обогащает почву азотом.'},
-bean:{name:'🫘 Фасоль',f:['Картофель','Огурец','Кукуруза','Свёкла','Капуста','Клубника'],e:['Лук','Чеснок','Фенхель','Горох'],n:['Морковь','Редис','Салат'],t:'Фасоль и кукуруза — классическая пара.'},
-beet:{name:'🟣 Свёкла',f:['Лук','Капуста','Салат','Огурец','Фасоль'],e:['Горчица','Кукуруза'],n:['Морковь','Томат','Картофель'],t:'Салат притеняет свёклу от палящего солнца.'},
-radish:{name:'🔴 Редис',f:['Морковь','Огурец','Горох','Салат','Шпинат','Фасоль'],e:['Иссоп'],n:['Томат','Капуста','Лук'],t:'Отличный уплотнитель между рядами моркови.'},
-lettuce:{name:'🥗 Салат',f:['Морковь','Редис','Огурец','Клубника','Свёкла'],e:['Петрушка','Сельдерей'],n:['Томат','Капуста','Лук'],t:'Работает как живая мульча между культурами.'},
-strawberry:{name:'🍓 Клубника',f:['Лук','Чеснок','Шпинат','Фасоль','Тимьян','Бархатцы'],e:['Капуста','Томат','Картофель','Малина'],n:['Морковь','Свёкла','Салат'],t:'Бархатцы отпугивают нематоду — врага ягоды №1.'}
-};
-function showResult(key,btn){
-document.querySelectorAll('.crop-btn').forEach(b=>b.classList.remove('active'));
-btn.classList.add('active');
-const c=CROPS[key];
-const li=a=>a.map(x=>'<li>'+x+'</li>').join('');
-document.getElementById('resultArea').innerHTML='<div class="result-card fade-in"><div class="result-title">'+c.name+'</div><div class="relations"><div class="relation-block friends"><h4>✅ Друзья</h4><ul>'+li(c.f)+'</ul></div><div class="relation-block enemies"><h4>❌ Враги</h4><ul>'+li(c.e)+'</ul></div><div class="relation-block neutral"><h4>😐 Нейтральные</h4><ul>'+li(c.n)+'</ul></div></div><div class="tip-box"><strong>💡 Совет:</strong> '+c.t+'</div></div>';
-}
-const sel=document.getElementById('cropSelector');
-Object.keys(CROPS).forEach((k,i)=>{
-const b=document.createElement('button');
-b.className='crop-btn';b.textContent=CROPS[k].name;
-b.onclick=function(){showResult(k,b);};
-sel.appendChild(b);
-if(i===0)showResult(k,b);
-});
-</script>
-<!-- ИСПРАВЛЕННЫЙ СКРИПТ ДЛЯ КАЛЬКУЛЯТОРОВ -->
-<script>
-(function() {
-    const pageName = window.location.pathname.split('/').pop().replace('.html', '');
-    const imgMap = {
-        'seeds-calc': 'seeds-calc.jpg',
-        'fertilizer-calc': 'fertilizer-calc.jpg',
-        'water-calc': 'watering-calc.jpg',
-        'compost-calc': 'compost-calc.jpg',
-        'raised-bed-calc': 'bed-planner.jpg',
-        'spacing-calc': 'bed-planner.jpg',
-        'mulch-calc': 'mulching.jpg',
-        'greenhouse-calc': 'greenhouse-calc.jpg',
-        'harvest-calc': 'harvest-calc.jpg',
-        'calendar': 'calendar-dacha.jpg',
-        'compatibility': 'compatibility.jpg',
-        'beds-planner': 'bed-planner.jpg'
-    };
-    
-    const container = document.querySelector('.container');
-    if (container) {
-        // Удаляем старые заглушки или SVG, если есть
-        const existingImgs = container.querySelectorAll('img');
-        existingImgs.forEach(img => {
-            if (img.src.includes('data:image') || img.classList.contains('placeholder')) {
-                img.remove();
-            }
-        });
-        
-        // Добавляем картинку, если её нет
-        if (!container.querySelector('img[src$=".jpg"]')) {
-            const imgSrc = imgMap[pageName] || 'hero-dacha.jpg';
-            const img = document.createElement('img');
-            img.src = imgSrc;
-            img.alt = 'Дача-Счёт';
-            img.style.cssText = 'width:100%; height:250px; object-fit:cover; border-radius:16px; margin-bottom:25px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);';
-            container.insertBefore(img, container.children[1]);
-        }
-    }
-
-    const partnerHTML = `
-    <div style="text-align:center; margin:35px auto; padding:25px; background:rgba(76,175,80,0.08); border-radius:12px; border:1px dashed #4CAF50; max-width:650px;">
-        <div style="font-weight:bold; color:#2E7D32; margin-bottom:10px; font-size:1.2rem;">🏡 Всё для дачи и сада в одном месте</div>
-        <p style="margin-bottom:15px; color:#555;">Инструменты, удобрения, семена и декор со скидкой до 40%.</p>
-        <a href="https://ru.trackerpro.org/6adcc9d6a4934?erid=2SDnjek8Bjn" target="_blank" rel="nofollow noopener" style="display:inline-block; background:#4CAF50; color:white; text-decoration:none; padding:12px 28px; border-radius:8px; font-weight:bold; transition:0.3s;">Перейти в Твой Дом →</a>
-        <div style="font-size:0.7rem; color:#888; margin-top:10px; line-height:1.4;">Реклама. АО "КРОКУС", ИНН 7728115183. Сайт https://tvoydom.ru<br>erid: 2SDnjek8Bjn</div>
-    </div>`;
-    
-    const footer = document.querySelector('footer');
-    if (footer && !footer.previousElementSibling?.classList.contains('ad-banner')) {
-        footer.insertAdjacentHTML('beforebegin', partnerHTML);
-    }
-})();
-</script></body>
+<footer style="text-align:center;margin-top:40px;color:#888">© 2026 Дача-Счёт</footer>
+</div>
+<script>function calc(){const c=document.getElementById('main').value;const compat={tomato:'✅ Базилик, морковь, лук\n❌ Капуста, картофель, фенхель',cucumber:'✅ Редис, фасоль, горох\n❌ Томаты, шалфей, мята',carrot:'✅ Лук, томаты, горох\n❌ Укроп, петрушка, сельдерей',bean:'✅ Огурцы, морковь, капуста\n❌ Лук, чеснок, фенхель'};document.getElementById('res').style.display='block';document.getElementById('val').innerText=c==='tomato'?'Томаты':c==='cucumber'?'Огурцы':c==='carrot'?'Морковь':'Фасоль';document.getElementById('desc').innerText=compat[c]}</script>
+</body>
 </html>
