@@ -3,142 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Лунный календарь садовода 2027 — Дача-Счёт</title>
+<title>Календарь работ — Дача-Счёт</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
-<style>
-.month-nav{display:flex;justify-content:center;gap:10px;margin-bottom:25px;flex-wrap:wrap}
-.month-btn{padding:8px 14px;border:1px solid var(--color-border);background:#fff;color:var(--color-text-muted);border-radius:20px;cursor:pointer;font-weight:bold}
-.month-btn.active,.month-btn:hover{background:var(--color-accent);color:#fff;border-color:var(--color-accent)}
-.legend-box{display:flex;gap:15px;flex-wrap:wrap;margin-bottom:25px;padding:15px;background:#fff;border-radius:8px;border:1px solid var(--color-border)}
-.legend-item{display:flex;align-items:center;gap:8px;font-size:.9rem;font-weight:bold}
-.color-dot{width:16px;height:16px;border-radius:50%;border:2px solid rgba(0,0,0,.1)}
-.dot-green{background:#dcfce7;border-color:#22c55e}
-.dot-yellow{background:#fef9c3;border-color:#eab308}
-.dot-red{background:#fee2e2;border-color:#ef4444}
-.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:30px}
-.day-header{text-align:center;font-weight:bold;color:var(--color-text-muted);padding:10px 0;font-size:.9rem}
-.day-cell{aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:8px;font-weight:bold;font-size:1.1rem;border:1px solid transparent}
-.day-cell span{font-size:.65rem;font-weight:normal;margin-top:3px;opacity:.85;text-align:center}
-.bg-green{background:#dcfce7;border-color:#22c55e;color:#14532d}
-.bg-yellow{background:#fef9c3;border-color:#eab308;color:#713f12}
-.bg-red{background:#fee2e2;border-color:#ef4444;color:#7f1d1d}
-.bg-empty{background:transparent}
-@media(max-width:600px){.calendar-grid{gap:4px}.day-cell{font-size:.9rem}.day-cell span{font-size:.55rem}}
-</style>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "z26px2msaf");</script>
+<style>.result-box{background:rgba(255,255,255,0.9);border-left:5px solid #4CAF50;padding:25px;border-radius:12px;margin-top:30px;display:none}.cal-value{font-size:1.8rem;font-weight:800;color:#2E7D32;text-align:center;margin:10px 0}.ad-banner{background:rgba(76,175,80,0.08);border:1px dashed #4CAF50;border-radius:12px;padding:25px;text-align:center;margin:30px 0}.ad-banner h3{color:#2E7D32;margin-top:0;font-size:1.3rem}.ad-btn{display:inline-block;background:#4CAF50;color:white;text-decoration:none;padding:12px 28px;border-radius:8px;font-weight:bold;transition:0.3s;margin-top:10px}.ad-btn:hover{background:#388E3C;transform:scale(1.05)}.ad-mark{font-size:0.7rem;color:#888;margin-top:10px;display:block;line-height:1.4}.input-styled{width:100%;padding:12px;border:1px solid #C8E6C9;border-radius:8px;background:white;font-size:1rem;margin-bottom:20px}</style>
 </head>
-<!-- MICROSOFT CLARITY НАЧАЛО -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "z11gfeuel9");
-</script>
-<!-- MICROSOFT CLARITY КОНЕЦ --><body>
+<body>
 <div class="container">
-<header style="margin-bottom:20px"><a href="index.html" style="color:var(--color-accent);font-weight:bold;text-decoration:none">← На главную</a></header>
-<h1>🌙 Лунный календарь 2027</h1>
-<p class="subtitle">Планируйте работы в саду и огороде по фазам Луны.</p>
-<div class="legend-box">
-<div class="legend-item"><div class="color-dot dot-green"></div><span>🌱 Посадка</span></div>
-<div class="legend-item"><div class="color-dot dot-yellow"></div><span>💧 Уход</span></div>
-<div class="legend-item"><div class="color-dot dot-red"></div><span>🚫 Отдых</span></div>
+<header style="margin-bottom:20px"><a href="index.html" style="color:#4CAF50;font-weight:bold;text-decoration:none">← На главную</a></header>
+<img src="calendar-dacha.jpg" alt="Календарь" style="width:100%;height:250px;object-fit:cover;border-radius:16px;margin-bottom:30px;box-shadow:0 8px 20px rgba(0,0,0,0.1)">
+<h1 style="color:#2E7D32">🗓️ Календарь работ</h1>
+<p class="subtitle">Что сеять, сажать и собирать каждый месяц. Лунные фазы и сроки.</p>
+<div class="card" style="max-width:600px;margin:0 auto">
+<div class="form-group"><label style="display:block;margin-bottom:8px;font-weight:600;color:#2E7D32">Месяц</label><select id="month" class="input-styled"><option value="1">Январь</option><option value="2">Февраль</option><option value="3">Март</option><option value="4">Апрель</option><option value="5">Май</option><option value="6">Июнь</option><option value="7">Июль</option><option value="8">Август</option><option value="9">Сентябрь</option><option value="10">Октябрь</option><option value="11">Ноябрь</option><option value="12">Декабрь</option></select></div>
+<button onclick="calc()" style="width:100%;padding:14px;background:#4CAF50;color:white;border:none;border-radius:8px;font-weight:bold;font-size:1.1rem;cursor:pointer">Показать работы</button>
+<div id="res" class="result-box"><div class="cal-value" id="val">—</div><div style="text-align:center;color:#555;line-height:1.6" id="desc">Выберите месяц</div></div>
+<div class="ad-banner"><h3>🏡 Всё для дачи и сада в одном месте</h3><p style="margin-bottom:10px;color:#555">Инструменты, удобрения, семена и декор со скидкой до 40%.</p><a href="https://ru.trackerpro.org/6adcc9d6a4934?erid=2SDnjek8Bjn" target="_blank" rel="nofollow noopener" class="ad-btn">Перейти в магазин Твой Дом →</a><span class="ad-mark">Реклама. АО "КРОКУС", ИНН 7728115183. Сайт https://tvoydom.ru<br>erid: 2SDnjek8Bjn</span></div>
 </div>
-<div class="month-nav" id="monthNav"></div>
-<div class="calendar-grid" id="calendarGrid"></div>
-<div class="ad-banner">[ Реклама: Садовый инвентарь, семена, удобрения ]</div>
-<footer style="text-align:center;margin-top:50px;color:var(--color-text-muted);font-size:.9rem">© 2027 Дача-Счёт</footer>
+<footer style="text-align:center;margin-top:40px;color:#888">© 2026 Дача-Счёт</footer>
 </div>
-<script>
-const MONTHS=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
-const WEEKDAYS=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
-const MOON={0:[6,20],1:[5,19],2:[7,21],3:[5,19],4:[5,19],5:[3,18],6:[3,17],7:[1,16,31],8:[14,29],9:[13,28],10:[12,27],11:[11,26]};
-function getDayType(m,d){
-const moons=MOON[m]||[];
-for(const x of moons){if(Math.abs(d-x)<=1)return 'red';}
-return Math.ceil(d/7)%2===1?'green':'yellow';
-}
-function renderMonth(mi){
-const grid=document.getElementById('calendarGrid');
-grid.innerHTML='';
-WEEKDAYS.forEach(w=>{const h=document.createElement('div');h.className='day-header';h.textContent=w;grid.appendChild(h);});
-const first=new Date(2027,mi,1).getDay();
-const days=new Date(2027,mi+1,0).getDate();
-const off=first===0?6:first-1;
-for(let i=0;i<off;i++){const c=document.createElement('div');c.className='day-cell bg-empty';grid.appendChild(c);}
-for(let d=1;d<=days;d++){
-const t=getDayType(mi,d);
-const c=document.createElement('div');
-c.className='day-cell bg-'+t;
-const moons=MOON[mi]||[];
-let label=moons.includes(d)?'🌕':(t==='green'?'Посадка':'Уход');
-c.innerHTML=d+'<span>'+label+'</span>';
-grid.appendChild(c);
-}
-document.querySelectorAll('.month-btn').forEach((b,i)=>b.classList.toggle('active',i===mi));
-}
-const nav=document.getElementById('monthNav');
-MONTHS.forEach((m,i)=>{
-const b=document.createElement('button');
-b.className='month-btn';b.textContent=m;
-b.onclick=function(){renderMonth(i);};
-nav.appendChild(b);
-});
-renderMonth(new Date().getMonth());
-</script>
-<!-- ИСПРАВЛЕННЫЙ СКРИПТ ДЛЯ КАЛЬКУЛЯТОРОВ -->
-<script>
-(function() {
-    const pageName = window.location.pathname.split('/').pop().replace('.html', '');
-    const imgMap = {
-        'seeds-calc': 'seeds-calc.jpg',
-        'fertilizer-calc': 'fertilizer-calc.jpg',
-        'water-calc': 'watering-calc.jpg',
-        'compost-calc': 'compost-calc.jpg',
-        'raised-bed-calc': 'bed-planner.jpg',
-        'spacing-calc': 'bed-planner.jpg',
-        'mulch-calc': 'mulching.jpg',
-        'greenhouse-calc': 'greenhouse-calc.jpg',
-        'harvest-calc': 'harvest-calc.jpg',
-        'calendar': 'calendar-dacha.jpg',
-        'compatibility': 'compatibility.jpg',
-        'beds-planner': 'bed-planner.jpg'
-    };
-    
-    const container = document.querySelector('.container');
-    if (container) {
-        // Удаляем старые заглушки или SVG, если есть
-        const existingImgs = container.querySelectorAll('img');
-        existingImgs.forEach(img => {
-            if (img.src.includes('data:image') || img.classList.contains('placeholder')) {
-                img.remove();
-            }
-        });
-        
-        // Добавляем картинку, если её нет
-        if (!container.querySelector('img[src$=".jpg"]')) {
-            const imgSrc = imgMap[pageName] || 'hero-dacha.jpg';
-            const img = document.createElement('img');
-            img.src = imgSrc;
-            img.alt = 'Дача-Счёт';
-            img.style.cssText = 'width:100%; height:250px; object-fit:cover; border-radius:16px; margin-bottom:25px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);';
-            container.insertBefore(img, container.children[1]);
-        }
-    }
-
-    const partnerHTML = `
-    <div style="text-align:center; margin:35px auto; padding:25px; background:rgba(76,175,80,0.08); border-radius:12px; border:1px dashed #4CAF50; max-width:650px;">
-        <div style="font-weight:bold; color:#2E7D32; margin-bottom:10px; font-size:1.2rem;">🏡 Всё для дачи и сада в одном месте</div>
-        <p style="margin-bottom:15px; color:#555;">Инструменты, удобрения, семена и декор со скидкой до 40%.</p>
-        <a href="https://ru.trackerpro.org/6adcc9d6a4934?erid=2SDnjek8Bjn" target="_blank" rel="nofollow noopener" style="display:inline-block; background:#4CAF50; color:white; text-decoration:none; padding:12px 28px; border-radius:8px; font-weight:bold; transition:0.3s;">Перейти в Твой Дом →</a>
-        <div style="font-size:0.7rem; color:#888; margin-top:10px; line-height:1.4;">Реклама. АО "КРОКУС", ИНН 7728115183. Сайт https://tvoydom.ru<br>erid: 2SDnjek8Bjn</div>
-    </div>`;
-    
-    const footer = document.querySelector('footer');
-    if (footer && !footer.previousElementSibling?.classList.contains('ad-banner')) {
-        footer.insertAdjacentHTML('beforebegin', partnerHTML);
-    }
-})();
-</script></body>
+<script>function calc(){const m=document.getElementById('month').value;const works={'1':'Планирование сезона, заказ семян','2':'Проверка инвентаря, посев на рассаду (перцы)','3':'Массовый посев рассады, обрезка деревьев','4':'Высадка в теплицу, подготовка грядок','5':'Высадка в грунт, защита от заморозков','6':'Полив, подкормки, пасынкование','7':'Сбор раннего урожая, заготовки','8':'Массовый сбор, консервация','9':'Посев сидератов, уборка теплиц','10':'Подзимние посадки, укрытие многолетников','11':'Ремонт инвентаря, планирование','12':'Отдых, изучение новинок'};document.getElementById('res').style.display='block';document.getElementById('val').innerText=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'][m-1];document.getElementById('desc').innerText=works[m]}</script>
+</body>
 </html>
