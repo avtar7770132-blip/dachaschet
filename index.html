@@ -26,15 +26,31 @@
         .tag { padding: 8px 16px; background: rgba(76,175,80,0.1); border-radius: 20px; font-size: 0.9rem; color: #2E7D32; cursor: pointer; }
         .tag.active { background: #4CAF50; color: white; }
         
-        /* СТИЛИ БЛОГА */
-        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
-        .blog-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-decoration: none; color: inherit; display: block; transition: transform 0.2s; }
-        .blog-card:hover { transform: translateY(-5px); }
-        .blog-card img { width: 100%; height: 160px; object-fit: cover; }
-        .blog-content { padding: 20px; }
-        .blog-title { font-size: 1.1rem; font-weight: bold; color: #166534; margin-bottom: 8px; }
-        .blog-desc { font-size: 0.9rem; color: #64748b; line-height: 1.5; }
-        .read-more { color: #22c55e; font-weight: bold; font-size: 0.85rem; display: block; margin-top: 10px; }
+        /* СТИЛИ ДЛЯ КНОПКИ БЛОГА */
+        .blog-cta-section {
+            text-align: center;
+            margin: 60px 0 40px;
+            padding: 40px 20px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #f1f5f9;
+        }
+        .blog-cta-section h3 { color: #166534; font-size: 1.8rem; margin-top: 0; margin-bottom: 10px; }
+        .blog-cta-section p { color: #64748b; font-size: 1.1rem; max-width: 600px; margin: 0 auto 25px; line-height: 1.5; }
+        .btn-blog-main {
+            display: inline-block;
+            background: #2E7D32;
+            color: white;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+        }
+        .btn-blog-main:hover { background: #1B5E20; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4); }
     </style>
 </head>
 <body>
@@ -53,12 +69,12 @@
         <span class="tag active">Все</span>
         <span class="tag">🌱 Семена</span>
         <span class="tag">🧪 Удобрения</span>
-        <span class="tag">💧 Уход</span>
+        <span class="tag"> Уход</span>
         <span class="tag">📐 Грядка</span>
         <span class="tag">📅 Планирование</span>
         <span class="tag">🧺 Урожай</span>
         <span class="tag">🗓️ Календарь</span>
-        <span class="tag">🤝 Совместимость</span>
+        <span class="tag"> Совместимость</span>
     </div>
 
     <!-- ПАРТНЁРКА ТВОЙ ДОМ -->
@@ -85,32 +101,11 @@
         <div class="card fade-in-up"><img src="bed-planner.jpg" alt=""><div class="card-title">Планировщик грядок</div><div class="card-desc">Визуальная схема участка: распределение культур по сезонам.</div><a href="beds-planner.html" class="btn-link">Открыть →</a></div>
     </div>
 
-    <!-- НОВЫЙ БЛОК БЛОГА С 2 НОВЫМИ СТАТЬЯМИ -->
-    <div style="margin: 50px 0;">
-        <h3 style="color:#2E7D32; text-align:center; font-size:1.8rem; margin-bottom:20px;">📚 Читайте блог дачника</h3>
-        <div class="blog-grid">
-            
-            <!-- Статья 1: Кислотность почвы -->
-            <a href="blog/soil-acidity-guide.html" class="blog-card">
-                <img src="blog-repair.jpg" alt="Кислотность почвы">
-                <div class="blog-content">
-                    <div class="blog-title">🧪 Кислотность почвы: как проверить и исправить</div>
-                    <div class="blog-desc">pH-метр, доломитовая мука и зола. Приведите землю в норму за один сезон.</div>
-                    <span class="read-more">Читать статью →</span>
-                </div>
-            </a>
-
-            <!-- Статья 2: Заточка инструмента -->
-            <a href="blog/tool-sharpening-guide.html" class="blog-card">
-                <img src="calendar-dacha.jpg" alt="Заточка инструмента">
-                <div class="blog-content">
-                    <div class="blog-title">🔪 Заточка садового инструмента: секреты мастерства</div>
-                    <div class="blog-desc">Секатор, лопата, цепь пилы. Готовьте инвентарь к весне правильно и безопасно.</div>
-                    <span class="read-more">Читать статью →</span>
-                </div>
-            </a>
-
-        </div>
+    <!-- ТОЛЬКО КНОПКА ПЕРЕХОДА В БЛОГ (НИКАКИХ СТАТЕЙ НА ГЛАВНОЙ) -->
+    <div class="blog-cta-section">
+        <h3>📚 Читайте блог дачника</h3>
+        <p>20 практических статей: рассада, теплицы, клубника, сидераты, кислотность почвы, заточка инструмента и другие лайфхаки.</p>
+        <a href="blog/index.html" class="btn-blog-main">Перейти ко всем статьям →</a>
     </div>
 
     <footer style="text-align:center; margin-top:40px; color:#888;">© 2026 Дача-Счёт · Все расчёты справочные.</footer>
